@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "name": "tp_progra3",
+  "version": "1.0.0",
+  "description": "trabajo praáctico programación 3, luz vazquez, sasha torales",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LUZVAAZQUEZ03/TP-PROGRAMACIONIII-2025-331.git"
+  },
+  "author": "luz vazquez, sasha torales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LUZVAAZQUEZ03/TP-PROGRAMACIONIII-2025-331/issues"
+  },
+  "homepage": "https://github.com/LUZVAAZQUEZ03/TP-PROGRAMACIONIII-2025-331#readme"
+}
