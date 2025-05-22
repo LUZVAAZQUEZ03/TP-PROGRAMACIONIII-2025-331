@@ -155,6 +155,7 @@ header{
 .redes, a, img {
     height: 1em; /* Ajusta la altura al tamaño del texto */
     vertical-align: middle; /* Alinea la imagen con el texto */
+
 }
 
 @media (max-width: 468px) {
@@ -165,7 +166,7 @@ header{
 }
 .footer .redes a {
     color: var(--secondaryTxtColor);
-    margin: 0 1rem;
+    margin: .5rem 1rem;
     text-decoration: none;
     transition: color 0.3s ease;
 }
