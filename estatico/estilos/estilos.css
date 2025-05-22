@@ -1,0 +1,126 @@
+:root{
+    --darkColor: #2F2F2F;
+    --mainTxtColor: #F0F0F0;
+    --secondaryTxtColor:#D0D0D0;
+    --mainSource:"Playfair Display", serif;
+    --secondaryFont: "Open Sans", sans-serif;
+    --txtBoton: #6c5a61;
+    --fondoInput:#f7dada;
+    --btn:#a06c79;
+
+    --colorPerfumes:#F9DCE4;
+    --colorSkinCare: #D6EAD9;
+    --backround:#A88A9B;
+    --hoverActive: #C1A1B3;
+    --borderColor: #3E3E3E;
+}
+html{
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+*,*:before,*:after{
+    box-sizing:inherit;
+}
+body{
+    font-family: var(--secondaryFont);
+    font-size: 1.6rem;
+    line-height: 2; 
+    background-color: var(--darkColor);
+}
+/*Globales*/
+h1{
+    font-size: 4.8rem;
+    font-weight: 700;
+    
+}
+h1,h2,h3{
+    font-family: var(--mainSource);
+    color:var(--mainTxtColor);
+
+}
+h2{
+    margin-bottom: 0;
+}
+p{
+    color:var(--mainTxtColor);
+    font-size: 1.4rem;
+    margin-top: 0;
+}
+/*Bienvenida*/
+.containerBienvenida{
+    width: min(60%, 120rem);
+    margin: 0 auto;
+    background-color: var(--borderColor);
+    text-align: center;
+    border-radius: .5rem;
+    padding-bottom: 2rem;
+    box-shadow: 0 0 1.5rem rgba(0,0,0,0.4);
+
+}
+.campo {
+    margin-bottom: 2rem;
+}
+@media (min-width: 468px) {
+        input{
+        width: 90%;
+    }
+}
+input{
+        padding:1.2rem;
+        width: 40%;
+        border: none;
+        border-radius: .3rem;
+        background-color: var(--fondoInput);
+        color:var(--txtBoton);
+        font-size: 1.6rem;
+        margin-bottom: 2rem;}
+
+input::placeholder {
+    color: var(--txtBoton);
+}
+.boton {
+    margin-top: 1rem;
+    padding: 12px 30px;
+    background-color: var(--btn); /* Botón malva */
+    color: white;
+    border: none;
+    border-radius: .2rem;
+    font-size: 1.6rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.boton:hover {
+    background-color: #b48191;
+    box-shadow: 0 0 20px rgba(160, 108, 121, 0.7); /* Sombra suave del color del botón */
+    transform: scale(0.98); /* Hace que el botón parezca presionado */
+}
+/*FOOTER */ /*CAMBIAR FACEBOOK POR  MAIL */
+.footer {
+    background-color: var(--borderColor);
+    color: var(--secondaryTxtColor);
+    text-align: center;
+    padding: 2rem 1rem;
+    font-size: 1.4rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--hoverActive);
+}
+.footer .redes {
+    margin-top: 1rem;
+}
+@media (max-width: 468px) {
+    .redes{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.footer .redes a {
+    color: var(--secondaryTxtColor);
+    margin: 0 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer .redes a:hover {
+    color: var(--mainTxtColor);
+}
