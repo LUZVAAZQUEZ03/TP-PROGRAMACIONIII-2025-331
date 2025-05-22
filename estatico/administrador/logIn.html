@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BeauScent</title>
-    <link rel="stylesheet" href="./estilos/estilos.css">
+    <link rel="stylesheet" href="../estilos/estilos.css">
+    <link rel="stylesheet" href="../estilos/estilosIndex.css">
     <link rel="icon" type="image/png" href="../img/icono.png">
 
 
 </head>
 <body>
     <header>
-        <h1> <strong>BeauScent</strong></h1>
         <div>
-            <a href="#">Preguntas frecuentes</a>
+            <nav>
+                <a href="#">Preguntas frecuentes</a>
+                <a href="#contacto">Contactanos</a>
+                <a href="./products.html">Productos</a>
+            </nav>
         </div>
     </header>
     <main>
-        <div>
+        <div class="formularioAlta">
             <form action="">
-                <!--inicio de sesion-->
                 <h2>Bienvenido:</h2>
                 <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" required placeholder="Ingrese su nombre."><br>
@@ -33,25 +36,27 @@
                 <input type="password" id="passw1" name="passw1" required placeholder="Ingrese su contraseña."><br>
                 <label for="passw">Contraseña:</label>
                 <input type="password" id="passw2" name="passw2" required placeholder="Verifique su contraseña."><br>
+                <button type="submit" class="boton">Enviar</button>
             </form>
         </div>
-        <div>
+        <div class="formularioLogin">
             <form action="">
                 <h2>Inicio de sesion:</h2>
                 <label for="user">Nombre de Usuario:</label>
                 <input type="text" id="user" name="user" required placeholder="Ingrese su nombre de usuario."><br>
                 
-                <input type="password" id="passw1" name="passw1" required placeholder="Ingrese su contraseña."><br>
                 <label for="passw">Contraseña:</label>
+                <input type="password" id="passw1" name="passw1" required placeholder="Ingrese su contraseña."><br>
+                <button class="boton">Aceptar</button>
             </form>
         </div>
     </main>
-    <footer>
+    <footer class="footer">
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
         <div class="redes">
-            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"<img src="../img/instagram.png" alt="Instagram">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook" <img src="../img/Facebook.png" alt="Facebook">Facebook</a>
-            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto" <img src="../img/Email.png" alt="Instagram">Contacto</a>
+            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"> </a><img src="../img/instagram.png" alt="Instagram">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"> </a> <img src="../img/Facebook.png" alt="Facebook">Facebook</a>
+            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"> <img src="../img/Email.png" alt="Contacto"> Contacto</a>
         </div>
     </footer>
 </body>

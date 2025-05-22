@@ -4,22 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="../img/icono.png">
+    <link rel="stylesheet" href="../estilos/estilos.css">
+    <link rel="stylesheet" href="-./estilos/estilosIndex.css">
     <title>BeauScent</title>
     
 </head>
 <body>
     <header >
-
+        <nav>
+            <a href="#contacto">Contactanos</a>
+            <a href="./administrador/products.html">Productos</a>
+            <a href="./administrador/logIn.html">Ingresar</a>
+        </nav>
     </header>
     <main>
+        <div class="ingresar">
+            <form action="">
+                <h1>Alta producto</h1>
+                <label for="idProducto">ID:</label>
+                <input type="text" id="idProducto" name="idProducto" required placeholder="Ingrese ID"><br>
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" required placeholder="Ingrese Nombre"><br>
+                <label for="precio">Precio:</label>
+                <input type="number" min="0" id="precio" required placeholder="Ingrese Precio"><br>
+                <label for="stock">Cantidad:</label>
+                <input type="number" min="0" id="stock" required placeholder="Ingrese CantidadCantidad"><br>
+                <label for="foto">Foto Producto:</label>
+                <input type="image" id="foto" required placeholder="Ingrese foto del nuevo producto"><br>
 
+
+                <button class="boton">Ingresar Producto</button>
+            </form>
+        </div>
     </main>
-    <footer>   
+    <footer class="footer">   
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
         <div class="redes">
-            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"<img src="../img/instagram.png" alt="Instagram">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook" <img src="../img/Facebook.png" alt="Facebook">Facebook</a>
-            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto" <img src="../img/Email.png" alt="Instagram">Contacto</a>
+            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"> </a><img src="../img/instagram.png" alt="Instagram">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"> </a> <img src="../img/Facebook.png" alt="Facebook">Facebook</a>
+            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"> <img src="../img/Email.png" alt="Contacto"> Contacto</a>
         </div>
     </footer>
 </body>

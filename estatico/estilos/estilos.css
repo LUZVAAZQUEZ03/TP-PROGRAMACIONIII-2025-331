@@ -41,13 +41,20 @@ h1,h2,h3{
 h2{
     margin-bottom: 0;
 }
+header{
+    background-image: url("../img/beauscent.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 250px;
+}
 p{
     color:var(--mainTxtColor);
     font-size: 1.4rem;
     margin-top: 0;
 }
 /*Bienvenida*/
-.containerBienvenida{
+.containerBienvenida, .formularioAlta, .formularioLogin, ingresar{
     width: min(60%, 120rem);
     margin: 0 auto;
     background-color: var(--borderColor);
@@ -107,6 +114,11 @@ input::placeholder {
 .footer .redes {
     margin-top: 1rem;
 }
+.redes, a, img {
+    height: 1em; /* Ajusta la altura al tamaño del texto */
+    vertical-align: middle; /* Alinea la imagen con el texto */
+}
+
 @media (max-width: 468px) {
     .redes{
         display: flex;
