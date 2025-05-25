@@ -9,31 +9,41 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>BeauScentroductos</title>
 </head> <!--FALTAAA TODO-->
-<body>
-    <header class="header-products">
-            <div class="barra">
-                <div class="header__imagen">
-                    <img src="../img/beauscent.png" alt="Logo de BeauScent">
-                </div>
-                <nav class="navegacion">
-                    <a href="productos.html" class="navegacion__enlace">Inicio</a>
-                    <a href="contacto.html" class="navegacion__enlace">Contacto</a>
-                    <a href="carrito.html" class="navegacion__enlace">carrito</a>
-                </nav>
+    <body>
+        <header class="contenedor header-productos">
+            <div class="logo">
+                <img src="../img/beauscent.png" alt="">
             </div>
-    </header>
-    <main>
-        <div class="container">
-            <div class="container__txt">
-                <h1>Perfumes & Skincare</h1>
-                <p>Descubrí tu aroma y una piel radiante.</p>
-                <button class="boton">Comprar Ahora</button>
+            <nav class="navegacion">
+                <a href="productos.html">Home</a>
+                <a href="#">Contacto</a>
+                <a href="#">Carrito</a>
+            </nav>
+        </header>
+
+    <main class="productos">
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Perfumes &<br />Skincare</h1>
+                <p>Discover your signature scent<br />and glowing skin</p>
+                <button class="boton">Shop Now</button>
             </div>
-            <div class="container__img">
-                <img src="../img/imagenProductos.png" alt="">
+            <div class="hero-img">
+                <img src="../img/imagenProductos.png" alt="Perfume" />
             </div>
-        </div>
-    </main>
+        </section>
+
+        <section class="categories">
+            <div class="category">
+                <h2>PERFUMES</h2>
+                <div class="box pink"></div>
+            </div>
+            <div class="category">
+                <h2>SKINCARE</h2>
+                <div class="box mint"></div>
+            </div>
+        </section>
+
     <footer class="footer">
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
         <div class="redes">
