@@ -174,9 +174,12 @@ p{
 .navegacion a {
     margin-left: 4rem;
     text-decoration: none;
-    color: white;
+    color: var(--secondaryTxtColor);
     font-size: 1.3rem;
 
+}
+.navegacion a:hover{
+    color: var(--mainTxtColor);
 }
 /* Hero section */
 .hero {
