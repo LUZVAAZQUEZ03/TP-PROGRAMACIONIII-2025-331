@@ -65,7 +65,7 @@ p{
     height: 250px;
 }
 /*Bienvenida*/
-.containerBienvenida, .formularioAlta, .formularioLogin, ingresar{
+.containerBienvenida, .formularioAlta, .formularioLogin, .ingresar{
     width: min(60%, 120rem);
     margin: 0 auto;
     background-color: var(--borderColor);
