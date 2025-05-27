@@ -201,7 +201,7 @@ p{
     color: var(--secondaryTxtColor);
 }
 
-.hero-img img {
+.hero-img img{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -279,7 +279,16 @@ p{
     }
 }
 
+/*carrito*/
+.item__imagen{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 
+    height: 20rem;
+    width: 40%;
+
+}
 /*FOOTER */ /*CAMBIAR FACEBOOK POR  MAIL */
 .footer {
     background-color: var(--borderColor);

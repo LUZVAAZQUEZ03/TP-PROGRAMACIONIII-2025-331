@@ -8,12 +8,12 @@ const port = 3000
 
 
 //sirvo estatico como estatico para poder iniciaer con el index
-app.use("/estatico", express.static(__dirname + "/estatico"))
+app.use("/estatico", express.static(dirname + "/estatico"))
 
 
 //el index del programa
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname + "/estatico/index.html"))
+    res.sendFile(path.join(dirname + "/estatico/index.html"))
 })
 
 
