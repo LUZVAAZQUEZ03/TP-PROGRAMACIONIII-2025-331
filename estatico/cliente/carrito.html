@@ -17,11 +17,12 @@
             </div>
             <nav class="navegacion">
                 <a href="productos.html">Home</a>
-                <a href="#">Contacto</a>
+                <a href="#footer">Contacto</a>
                 <a href="carrito.html">Carrito</a>
             </nav>
     </header>
     <main>
+        <div class="container">
         <h2>Carrito de compras</h2>
         <div class="carrito-item" id="item-1">
             <!-- aca irian los productos -->
@@ -31,7 +32,7 @@
                 <p class="item__precio">$60.00</p>
             </div>
             <div class="product-quantity">
-                <input type="number" value="1" min="1">
+                <input class="input-text" type="number" value="1" min="1">
             </div>
                 <p class="product-total">$60.00</p>
                 <button id="btnRemover" class="boton">Quitar del carrito</button>
@@ -46,8 +47,10 @@
                 <button class="boton" id="finalizar-btn">Finalizar</button>
                 <button class="boton" id="continuar-btn">Continuar comprando</button>
             </div>
+        </div>
+        
     </main>
-    <footer class="footer">
+    <footer class="footer" id="footer">
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
         <div class="redes">
             <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="../img/instagram.png" alt="Instagram">Instagram</a>

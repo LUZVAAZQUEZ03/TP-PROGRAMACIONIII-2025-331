@@ -66,7 +66,7 @@ p{
     height: 250px;
 }
 /*Bienvenida*/
-.containerBienvenida, .formularioAlta, .formularioLogin, .ingresar{
+.containerBienvenida, .formularioAlta, .formularioLogin, .ingresar, .container{
     width: min(60%, 120rem);
     margin: 0 auto;
     background-color: var(--borderColor);
@@ -92,7 +92,7 @@ p{
     margin: 0 auto;
     padding: 0;
 }
-.input-text{
+.input-text {
         padding:1rem;
         width: 50%;
         border: none;

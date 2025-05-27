@@ -1,17 +1,19 @@
 const express = require('express')
-const cors= require("cors")
 const app = express()
+const cors= require("cors")
 const path = require("path")
 const { request } = require('http')
 const port = 3000
 
 
-app.use("/vista", express.static(__dirname + "/vista"));
 //estamos sirviendo vista como estatico para poder usarlo desde "estatico/admin" y "estatico/cliente"
-app.use("/estatico", express.static(__dirname + "/estatico"))
+app.use("/vista", express.static(__dirname + "/vista"));
+
 //sirvo estatico como estatico para poder iniciaer con el index
+app.use("/estatico", express.static(__dirname + "/estatico"))
+
+//seteto path de admin
 app.set("views", path.join(__dirname + "/estatico/administrador"))
-//seteto path 
 
 
 //el index del programa
@@ -20,7 +22,7 @@ app.get('/', (req, res) => {
 })
 
 //log del lado del admin 
-app.get("/log", (request,response)=>{
+app.get("/logAdmin", (request,response)=>{
     response.render("logIn.ejs")
 })
 
