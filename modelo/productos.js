@@ -6,5 +6,6 @@ class Producto {
         this.stock = cantidad;
         this.fotoProducto = fotoProducto;
         this.categoria = categoria; // 'Perfume' o 'Skincare'
+        this.estado = true;
     }
 }

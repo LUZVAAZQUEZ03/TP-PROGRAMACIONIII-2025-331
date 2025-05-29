@@ -106,6 +106,25 @@ p{
     color: var(--txtBoton);
     font-size: 1.3rem;
 }
+
+.nombres p{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    text-decoration: none;
+    color: var(--secondaryTxtColor);
+    font-size: 1.3rem;
+
+}
+.chk{
+    accent-color: var(--btn);
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 @media (max-width: 468px) {
         .input-text{
         width: 90%;
