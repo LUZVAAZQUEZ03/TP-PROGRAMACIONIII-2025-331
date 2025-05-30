@@ -1,10 +1,15 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const path = require('path')
 const rutasAdmin = require("./rutas/rutasAdmin.js")
 const rutasCliente = require("./rutas/rutasCliente.js");//exporto las rutas de los htmsls de cliente
 const port = 3000
 
+
+//uso cors para activar todos los origenes
+app.use(cors());//si quisiera que sea solo para nuestro front lo pongo como: 
+// app.use(cors(origin: 'http://localhost:5502'));
 
 //sirvo estatico como estatico para poder iniciaer con el index
 app.use(express.static(path.join(__dirname, 'estatico')));

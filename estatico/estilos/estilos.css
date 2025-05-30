@@ -125,6 +125,20 @@ p{
     transition: background-color 0.3s ease;
 }
 
+.allProducts{
+    width: min(90%, 120rem);
+    margin: 0 auto;
+    background-color: var(--borderColor);
+    text-align: center;
+    border-radius: .8rem;
+    box-shadow: 0 0 1.5rem rgba(0,0,0,0.4);
+    padding: 2rem 2rem 2rem 2rem;
+}
+.allProducts h1{
+    color:var(--mainTxtColor);
+}
+
+
 @media (max-width: 468px) {
         .input-text{
         width: 90%;
