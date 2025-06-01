@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../estilos/estilos.css"/>
+    <link rel="preload" href="../estilos/normalize.css" as="style"/>
+    <link rel="stylesheet" href="../estilos/normalize.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display&display=swap" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="../img/icono.png"/>
+    <title>Ticket - BeauScent</title>
+</head>
+<body>
+    <header class="contenedor header-productos">
+        <div class="logo">
+            <img src="../img/beauscent.png" alt="Logo BeauScent" />
+        </div>
+        <div class="nombres">
+            <p>Torales Sasha Micaela, Vázquez Luz</p>
+        </div>
+        <nav class="navegacion">
+            <a href="productos.html">Home</a>
+            <a href="#footer">Contacto</a>
+            <a href="carrito.html">Carrito</a>
+        </nav>
+    </header>
+
+    <body>
+        <div class="container">
+            <div class="logo">
+            <img src="../img/beauscent.png" alt="Logo BeauScent">
+            </div>
+            <h1>Gracias por tu compra, Sasha</h1>
+            
+            <div class="ticket-info">
+                <p><strong>Producto:</strong> Perfume Rose Mist</p>
+                <p><strong>Categoría:</strong> Perfumes</p>
+                <p><strong>Cantidad:</strong> 2</p>
+                <p><strong>Precio Unitario:</strong> $4500</p>
+                <hr style="margin: 1rem 0; border: 1px solid #555;">
+                <p><strong>Producto:</strong> Gel Facial Fresh</p>
+                <p><strong>Categoría:</strong> Skincare</p>
+                <p><strong>Cantidad:</strong> 1</p>
+                <p><strong>Precio Unitario:</strong> $3200</p>
+            </div>
+
+            <div class="ticket-total">
+            Total: $12.200
+            </div>
+
+            <button id="volver-btn" class="boton" onclick="window.location.href='productos.html'">Volver a Productos</button>
+        </div>
+    </body>
+
+    <footer class="footer" id="footer">
+        <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
+        <div class="redes">
+            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="../img/instagram.png" alt="Instagram">Instagram</a>
+            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"><img src="../img/Facebook.png" alt="Facebook">Facebook</a>
+            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"><img src="../img/Email.png" alt="Contacto">Contacto</a>
+        </div>
+    </footer>
+
+    <script src="/vista/vistaTicket.js"></script>
+</body>
+</html>
