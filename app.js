@@ -9,7 +9,7 @@ const rutasCliente = require("./rutas/rutasCliente.js");//exporto las rutas de l
 const port = process.env.PORT || 6000;
 
 const configApi = (app) =>{
-        //uso cors para activar todos los origenes
+    //uso cors para activar todos los origenes
     app.use(cors());//si quisiera que sea solo para nuestro front lo pongo como: 
     // app.use(cors(origin: 'http://localhost:5502'));
     app.use(express.urlencoded({extended: true})); //permite que express entienda forms enviados por post
@@ -26,10 +26,6 @@ const configApi = (app) =>{
 const init = () =>{
     const app = express();
     configApi(app);
-    //el index del programa
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname + 'estatico'))
-    })
     app.listen(port, '0.0.0.0',() => {
         console.log(`Listening on port ${port}`)
 })
