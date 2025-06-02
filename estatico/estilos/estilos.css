@@ -58,6 +58,9 @@ p{
     font-size: 1.2rem;
     margin-top: 0;
 }
+a{
+    text-decoration: none;
+}
 .header{
     background-image: url("../img/beauscent.png");
     background-size: cover;

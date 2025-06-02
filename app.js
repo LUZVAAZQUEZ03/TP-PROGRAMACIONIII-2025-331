@@ -13,6 +13,8 @@ const configApi = (app) =>{
     app.use(cors());//si quisiera que sea solo para nuestro front lo pongo como: 
     // app.use(cors(origin: 'http://localhost:5502'));
     app.use(express.urlencoded({extended: true})); //permite que express entienda forms enviados por post
+    app.use(express.json());
+
     //sirvo estatico como estatico para poder iniciaer con el index
     app.use(express.static(path.join(__dirname, 'estatico')));
     app.set('view engine', 'ejs'); //seteo que las vistas se trrabajan con ejs
