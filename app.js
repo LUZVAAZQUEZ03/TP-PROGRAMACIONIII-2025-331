@@ -5,7 +5,7 @@ require('dotenv').config(); //npm install dotenv para utilizar el env y no tener
 
 const rutasAdmin = require("./rutas/rutasAdmin.js")
 const rutasCliente = require("./rutas/rutasCliente.js");//exporto las rutas de los htmsls de cliente
-const productosRoutes = require("./rutas/rutasApi.js")
+const prutasProductos = require("./rutas/rutasApi.js")
 
 
 const port = process.env.PORT || 6000;
@@ -24,7 +24,7 @@ const configApi = (app) =>{
 
     app.use('/admin', rutasAdmin); //cargo todas las vistas del admin con /admin
     app.use('/cliente', rutasCliente); //activo las turas de los clientes con /cliente
-    app.use('/api/productos', productosRoutes);
+    app.use('/api/productos', prutasProductos);
     return;
 }
 
