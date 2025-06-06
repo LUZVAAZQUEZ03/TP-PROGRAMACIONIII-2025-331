@@ -25,16 +25,23 @@
     </header>
     <main>
         <div class="ingresar">
-            <form action="">
+            <%if(modo === "alta"){
+                <form method="post" action="/nuevoProducto">
+            } %>
+            <%if(modo === "eliminar"){
+                <form method="patch" action="/bajaProducto">
+            } %>
+            <%if(modo === "modificar"){
+                <form method="put" action="/modificarProducto">
+            } %>
+            
+            <form method="post" action="">
                 <h1>Alta producto</h1>
                 <input class="input-text"  type="text" id="idProducto" name="idProducto" required placeholder="Ingrese ID"><br>
                 <input class="input-text" type="text" id="nombre" required placeholder="Ingrese Nombre"><br>
                 <input class="input-text" type="number" min="0" id="precio" required placeholder="Ingrese Precio"><br>
-<<<<<<< HEAD
                 <input class="input-text" type="number" min="0" id="stock" required placeholder="Ingrese CantidadCantidad"><br> 
-=======
                 <input class="input-text" type="number" min="0" id="stock" required placeholder="Ingrese CantidadCantidad"><br>
->>>>>>> 5919f6437a0b95c8ae356251a2f5e40c2616acf7
                 <input class="input-text" type="image" id="foto" required placeholder="Ingrese foto del nuevo producto"><br>
                 <button class="boton" >Cancelar</button>
                 <button class="boton" >Cargar</button>

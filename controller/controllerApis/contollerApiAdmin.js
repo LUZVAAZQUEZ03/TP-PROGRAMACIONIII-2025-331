@@ -1,4 +1,4 @@
-const Producto = require('../../servicios/modeloConect.js');
+const Producto = require('../../servicios/modeloConect');
 
 exports.getAll = (req, res) => {
     Producto.obtenerTodos((err, data) => {
@@ -9,9 +9,17 @@ exports.getAll = (req, res) => {
         console.log(data)
     });
 };
+exports.getActivos = (req, res) => {
+    Producto.obtenerActivos((err, data) => {
+        if (err){
+        return res.status(500).json({ error: 'Error al obtener productos' });
+        }    
+        res.json(data);
+        console.log(data)
+    });
+};
 exports.create = (req, res) => {
     const nuevoProducto = req.body;
-    nuevoProducto.activo = 1;
 
     Producto.crear(nuevoProducto, (err, result) => {
         if (err) return res.status(500).json({ error: 'Error al crear producto' });
@@ -19,7 +27,7 @@ exports.create = (req, res) => {
     });
 };
 
-exports.update = (req, res) => {
+exports.actualizar = (req, res) => {
     const id = req.params.id;
     const datos = req.body;
 
@@ -35,6 +43,14 @@ exports.activar = (req, res) => {
     Producto.activar(id, (err) => {
         if (err) return res.status(500).json({ error: 'Error al activar' });
         res.json({ mensaje: 'Producto activado' });
+    });
+};
+exports.desactivar = (req, res) => {
+    const id = req.params.id;
+
+    Producto.bajaLogica(id, (err) => {
+        if (err) return res.status(500).json({ error: 'Error al activar' });
+        res.json({ mensaje: 'Producto desactivado' });
     });
 };
 

@@ -10,3 +10,20 @@ CREATE TABLE productos (
     categoria ENUM('Perfume', 'Skincare'),
   	estado BOOLEAN DEFAULT 1
 );
+mysql -u root -p
+
+INSERT INTO productos (nombre, precio, stock, fotoProducto, categoria, estado) VALUES
+  ('Eau de Lumière 50 ml', 79.90, 30, 'estatico/img/productos/1.png', 'Perfume', 1),
+  ('Noir Absolu 100 ml', 119.00, 20, 'estatico/img/productos/2.png', 'Perfume', 1),
+  ('Brisa Floral 30 ml', 39.50, 60, 'estatico/img/productos/3.png', 'Perfume', 1),
+  ('Serum Revitalizante 30 ml', 45.25, 40, 'estatico/img/productos/5.png', 'Skincare', 1),
+  ('Crema HydraGlow 50 ml', 34.99, 55, 'estatico/img/productos/6.png', 'Skincare', 1);
+
+CREATE TABLE usuario(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nombre VARCHAR(100),
+    usuario VARCHAR (100),
+    correo VARCHAR (100),
+    passw VARCHAR (100)
+
+);

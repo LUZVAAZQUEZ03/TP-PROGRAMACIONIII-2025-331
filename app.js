@@ -5,7 +5,7 @@ require('dotenv').config(); //npm install dotenv para utilizar el env y no tener
 
 const rutasAdmin = require("./rutas/rutasAdmin.js")
 const rutasCliente = require("./rutas/rutasCliente.js");//exporto las rutas de los htmsls de cliente
-const prutasProductos = require("./rutas/rutasApi.js")
+const rutasProductos = require("./rutas/rutasApi.js")
 
 
 const port = process.env.PORT || 6000;
@@ -24,9 +24,20 @@ const configApi = (app) =>{
 
     app.use('/admin', rutasAdmin); //cargo todas las vistas del admin con /admin
     app.use('/cliente', rutasCliente); //activo las turas de los clientes con /cliente
-    app.use('/api/productos', prutasProductos);
+    app.use('/api/productos', rutasProductos);
+
+    app.get('/api/productos', async (req, res) => {
+  try {
+    const conexion = await db;
+    const [rows] = await conexion.query('SELECT * FROM productos');
+    res.json(rows);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
     return;
-}
+} 
 
 const init = () =>{
     const app = express();

@@ -1,9 +1,10 @@
 class User{
-    constructor(nombre,usuario,correo,passw, tipoUser){
+    constructor(id,nombre,usuario,correo,passw){
+        this.id = id;
         this.nombre = nombre;
         this.useuario = usuario;
         this.correo = correo ;
         this.passw = passw;
-        this.tipoUser = tipoUser;
+
     }
 }
