@@ -27,14 +27,14 @@ const configApi = (app) =>{
     app.use('/api/productos', rutasProductos);
 
     app.get('/api/productos', async (req, res) => {
-  try {
-    const conexion = await db;
-    const [rows] = await conexion.query('SELECT * FROM productos');
-    res.json(rows);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-});
+        try {
+            const conexion = await db;
+            const [rows] = await conexion.query('SELECT * FROM productos');
+            res.json(rows);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    });
 
     return;
 } 

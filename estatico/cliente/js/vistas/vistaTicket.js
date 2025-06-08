@@ -1,0 +1,4 @@
+class VistaTicket{
+
+}
+export {VistaTicket};
