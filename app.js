@@ -26,15 +26,8 @@ const configApi = (app) =>{
     app.use('/cliente', rutasCliente); //activo las turas de los clientes con /cliente
     app.use('/api/productos', rutasProductos);
 
-    app.get('/api/productos', async (req, res) => {
-        try {
-            const conexion = await db;
-            const [rows] = await conexion.query('SELECT * FROM productos');
-            res.json(rows);
-        } catch (error) {
-            res.status(500).json({ error: error.message });
-        }
-    });
+    //para setear la lectura de los formularios en formato json
+    app.use(express.urlencoded({extended: true}))
 
     return;
 } 

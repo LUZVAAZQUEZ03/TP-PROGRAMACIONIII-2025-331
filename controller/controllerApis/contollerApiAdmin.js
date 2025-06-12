@@ -1,11 +1,11 @@
-const Producto = require('../../servicios/modeloConect');
+const Producto = require('../../servicios/querys');
 
 exports.getAll = (req, res) => {
     Producto.obtenerTodos((err, data) => {
         if (err){
         return res.status(500).json({ error: 'Error al obtener productos' });
         }    
-        res.json(data);
+        res.render('dashboard', {data})
         console.log(data)
     });
 };
@@ -31,10 +31,9 @@ exports.actualizar = (req, res) => {
     const id = req.params.id;
     const datos = req.body;
 
-    Producto.actualizar(id, datos, (err) => {
-        if (err) return res.status(500).json({ error: 'Error al actualizar' });
-        res.json({ mensaje: 'Producto actualizado' });
-    });
+    res.render('formABMproductos', { modo: 'modificar', datos });
+    res.json({ mensaje: 'Producto actualizado' });
+
 };
 
 exports.activar = (req, res) => {

@@ -24,26 +24,58 @@
             </nav>
         </div>
     </header>
-    <main>
-        <div class="allProducts">
-            <h1>BeauScent Productos</h1>
-            <div class="listaProductos">
-                <div class="category">
-                    <h2>PERFUMES</h2>
-                    <div class="box pink"></div>
-                </div>
-                <div class="category">
-                    <h2>SKINCARE</h2>
-                    <div class="box mint"></div>
-                </div>
+<main>
+    <div class="allProducts">
+        <h1>BeauScent Productos</h1>
+    <div>
+        <button onclick="location.href='/admin/formABMproductos'" class="boton">
+            Agregar nuevo
+        </button>
 
+    <section class="categories" id="categories">
+        <div class="category">
+            <h2>PERFUMES</h2>
+            <div class="box pink" id="perfume">
+                <% data.filter(p => p.categoria === "Perfume").forEach(p => { %>
+                    <div class="dato-prod">
+                        <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
+                        <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> <%= p.precio %>$</h3>
+                        <p>
+                            <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
+                            <button class="boton">Desactivar</button>
+                            <button class="boton">Activar</button>
+                        </p>
+                    </div>
+                <% }) %>
             </div>
         </div>
-    </main>
+        <div class="category"> 
+            <h2>SKINCARE</h2>
+            <div class="box mint" id="skincare">
+                <div class="cajita">
+                    <% data.filter(p => p.categoria === "Skincare").forEach(p => { %>
+                <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
+                    <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> <%= p.precio %>$</h3>
+                    <p>
+                        <button onclick class="boton">Editar</button>
+                        <button class="boton">Desactivar</button>
+                        <button class="boton">Activar</button>
+                    </p> 
+                <% }) %>
+
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+</main>
     <footer class="footer">   
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
         <div class="redes">
-            <a>href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="/img/instagram.png" alt="Instagram">Instagram</a>
+            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="/img/instagram.png" alt="Instagram">Instagram</a>
             <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"><img src="/img/Facebook.png" alt="Facebook">Facebook</a>
             <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"><img src="/img/Email.png" alt="Contacto"> Contacto</a>
         </div>
