@@ -6,22 +6,19 @@ class ControlBienvenido{
         this.VistaBienvenido=p_vista;
         this.registrarBotones();
     }
-    registrarBotones(){
-        document.addEventListener("DOMContentLoaded", () => {
+    registrarBotones() {
         const inputNombre = this.VistaBienvenido.entradaCliente.nombreCliente;
         const botonComenzar = this.VistaBienvenido.entradaCliente.btnComenzar;
-        
         botonComenzar.addEventListener("click", () => {
             const nombre = inputNombre.value.trim();
             if (!this.validarNombre(nombre)) return;
-            // Guardar el nombre en localStorage
+
             localStorage.setItem("nombreUsuario", nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase());
-            inputNombre.value ="";
-            // Redireccionar a productos.html
+            inputNombre.value = "";
             window.location.href = "productos.html";
         });
-        });
-    }
+}
+
     validarNombre(nombre){
         const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/;
         if (nombre === "") {
