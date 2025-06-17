@@ -1,4 +1,4 @@
-
+const Producto = require("../../servicios/querys")
 
 exports.renderLog = (req, res) => {
     res.render('login'); // vista login.ejs
@@ -7,7 +7,6 @@ exports.renderLog = (req, res) => {
 
 exports.renderDashboard = (req, res) => {
     res.render('dashboard', {res});
-    
 };
 
 exports.renderAlta = (req, res) => {
@@ -19,11 +18,10 @@ exports.renderCreate = (req, res)=>{
 };
 exports.renderFormEditar = (req, res) => {
     const id = req.params.id;
-
-    Producto.obtenerPorId(id, (err, resultado) => {
+    Producto.getById(id,(err, resultado)=>{
         if (err) return res.status(500).send('Error al obtener producto');
-
-        const producto = resultado[0]; // viene como array
-        res.render('formABMproductos', { producto, modo: 'modificar' });
-    });
+        const producto = resultado[0];
+        res.render('formABMproductos', { modo: 'modificar', producto });
+    })
 };
+

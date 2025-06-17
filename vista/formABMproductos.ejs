@@ -1,41 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/img/icono.png">
-    <link rel="stylesheet" href="/estilos/estilos.css">
-    <link rel="stylesheet" href="/estilos/estilosIndex.css">
-    <title>BeauScent</title>
-    
-</head>
+<%- include('partials/head') %>
 <body>
-    <header >
-        <div class="contenedor header-productos">
-            <div class="logo">
-                <img src="/img/beauscent.png" alt="">
-            </div>
-            <div class="nombres">
-                <p>Torales Sasha Micaela, Vázquez Luz</p>
-            </div>
-            <nav class="navegacion">
-                <a href="">Cerrar Sesión</a>
-            </nav>
-        </div>
-    </header>
+    <%- include('partials/header') %>
     <main>
         <div class="ingresar">
             <%if(modo === "alta"){%>
                 <h1>Alta producto</h1>
-                <form method="post" action="/nuevoProducto">
+                <form method="POST" action="/nuevoProducto">
             <% } %>
             <%if(modo === "modificar") {%>
                 <h1>Modificar Producto</h1>
-                <form method="post" action="/admin/producto/modificar">
+                <form method="POST" action="/editado">
             <% } %>
             
                 <input class="input-text" type="text" id="nombre" required placeholder="Ingrese Nombre" value="<%= producto?.nombre || '' %>"><br>
-                <input class="input-text" type="number" min="0" id="precio" required placeholder="Ingrese Precio" value="<%= producto?.precio || '' %>"><br>
+                <input class="input-text" type="text" min="0" id="precio" required placeholder="Ingrese Precio" pattern="\d+(.\d{1,2})?" value="<%= producto?.precio ? producto.precio.replace(',', '.') : '' %>"><br>
                 <input class="input-text" type="number" min="0" id="stock" required placeholder="Ingrese CantidadCantidad" value="<%= producto?.stock || '' %>"><br> 
                 <input class="input-text" type="image" id="foto" required placeholder="Ingrese foto del nuevo producto" value="<%= producto?.fotoProducto || '' %>"><br>
                 <button type="button" onclick="location.href='/admin/dashboard'" class="boton">Cancelar</button>
@@ -43,13 +23,7 @@
             </form>
         </div>
     </main>
-    <footer class="footer">   
-        <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
-        <div class="redes">
-            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="/img/instagram.png" alt="Instagram">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"><img src="/img/Facebook.png" alt="Facebook">Facebook</a>
-            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"><img src="/img/Email.png" alt="Contacto"> Contacto</a>
-        </div>
-    </footer>
+    <%- include('partials/footer') %>
 </body>
+</html>
 </html>

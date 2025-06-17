@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeauScent</title>
-    <link rel="stylesheet" href="/estilos/estilos.css">
-    <link rel="stylesheet" href="/estilos/estilosIndex.css">
-    <link rel="icon" type="image/png" href="/img/icono.png">
-
-
-</head>
+<%- include('partials/head') %>
 <body>
     <header >
         <div class="contenedor header-productos">
@@ -35,15 +26,7 @@
             </form>
         </div>
     </main>
-    <footer class="footer">
-        <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
-        <div class="redes">
-            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"> <img src="/img/instagram.png" alt="Instagram">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"><img src="/img/Facebook.png" alt="Facebook">Facebook</a>
-            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"><img src="/img/Email.png" alt="Contacto.">Contacto</a>
-        </div>
-    </footer>
-    <script src="../"></script>
-    <script src="/vista/vistaAdimin.js"></script>
+    <%- include('partials/footer') %>
+
 </body>
 </html>

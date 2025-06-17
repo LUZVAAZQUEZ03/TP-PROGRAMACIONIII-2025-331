@@ -1,7 +1,7 @@
 const Producto = require('../../servicios/querys');
 
 exports.getAll = (req, res) => {
-    Producto.obtenerTodos((err, data) => {
+    Producto.getAll((err, data) => {
         if (err){
         return res.status(500).json({ error: 'Error al obtener productos' });
         }    
@@ -9,8 +9,8 @@ exports.getAll = (req, res) => {
         console.log(data)
     });
 };
-exports.getActivos = (req, res) => {
-    Producto.obtenerActivos((err, data) => {
+exports.getActive = (req, res) => {
+    Producto.getActive((err, data) => {
         if (err){
         return res.status(500).json({ error: 'Error al obtener productos' });
         }    
@@ -21,13 +21,13 @@ exports.getActivos = (req, res) => {
 exports.create = (req, res) => {
     const nuevoProducto = req.body;
 
-    Producto.crear(nuevoProducto, (err, result) => {
+    Producto.create(nuevoProducto, (err, result) => {
         if (err) return res.status(500).json({ error: 'Error al crear producto' });
         res.json({ mensaje: 'Producto creado', id: result.insertId });
     });
 };
 
-exports.actualizar = (req, res) => {
+exports.update = (req, res) => {
     const id = req.params.id;
     const datos = req.body;
 
@@ -39,17 +39,19 @@ exports.actualizar = (req, res) => {
 exports.activar = (req, res) => {
     const id = req.params.id;
 
-    Producto.activar(id, (err) => {
-        if (err) return res.status(500).json({ error: 'Error al activar' });
-        res.json({ mensaje: 'Producto activado' });
+    Producto.activate(id, (err) => {
+        if (err) return res.status(500).send('Error al activar producto');
+        res.redirect('/admin/dashboard');
     });
-};
+}
+
 exports.desactivar = (req, res) => {
     const id = req.params.id;
 
-    Producto.bajaLogica(id, (err) => {
+    Producto.activate(id, (err) => {
         if (err) return res.status(500).json({ error: 'Error al activar' });
-        res.json({ mensaje: 'Producto desactivado' });
+        res.redirect('/admin/dashboard');
+        console.log("desactivado")
     });
 };
 

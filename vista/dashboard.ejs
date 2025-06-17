@@ -1,29 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/img/icono.png">
-    <link rel="stylesheet" href="/estilos/estilos.css">
-    <link rel="stylesheet" href="/estilos/normalize.css">
-    <title>BeauScent</title>
-    
-</head>
+<%- include('partials/head') %>
 <body>
-    <header >
-        <div class="contenedor header-productos">
-            <div class="logo">
-                <img src="/img/beauscent.png" alt="">
-            </div>
-            <div class="nombres">
-                <p>Torales Sasha Micaela, Vázquez Luz</p>
-            </div>
-            <nav class="navegacion">
-                <a href="">Mostrar Por</a>
-                <a href="">Cerrar Sesión</a>
-            </nav>
-        </div>
-    </header>
+    <%- include('partials/header') %>
 <main>
     <div class="allProducts">
         <h1>BeauScent Productos</h1>
@@ -38,12 +17,17 @@
             <div class="box pink" id="perfume">
                 <% data.filter(p => p.categoria === "Perfume").forEach(p => { %>
                     <div class="dato-prod">
+                        <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %></h3>
                         <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
-                        <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> <%= p.precio %>$</h3>
+                        <h3><%= p.precio %>$</h3>
                         <p>
                             <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
-                            <button class="boton">Desactivar</button>
-                            <button class="boton">Activar</button>
+                            <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
+                                <button type="submit" class="boton">Desactivar</button>
+                            </form>
+                            <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                                <button type="submit" class="boton">Activar</button>
+                            </form>
                         </p>
                     </div>
                 <% }) %>
@@ -54,12 +38,17 @@
             <div class="box mint" id="skincare">
                 <div class="cajita">
                     <% data.filter(p => p.categoria === "Skincare").forEach(p => { %>
-                <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
-                    <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> <%= p.precio %>$</h3>
+                    <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> </h3>
+                    <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
+                    <h3><%= p.precio %>$</h3>
                     <p>
-                        <button onclick class="boton">Editar</button>
-                        <button class="boton">Desactivar</button>
-                        <button class="boton">Activar</button>
+                        <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
+                        <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
+                            <button type="submit" class="boton">Desactivar</button>
+                        </form>
+                        <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                            <button type="submit" class="boton">Activar</button>
+                        </form>
                     </p> 
                 <% }) %>
 
@@ -72,13 +61,6 @@
 
 
 </main>
-    <footer class="footer">   
-        <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
-        <div class="redes">
-            <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="/img/instagram.png" alt="Instagram">Instagram</a>
-            <a href="https://www.facebook.com/profile.php?id=61576653569594" aria-label="Facebook"><img src="/img/Facebook.png" alt="Facebook">Facebook</a>
-            <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"><img src="/img/Email.png" alt="Contacto"> Contacto</a>
-        </div>
-    </footer>
+    <%- include('partials/footer') %>
 </body>
 </html>
