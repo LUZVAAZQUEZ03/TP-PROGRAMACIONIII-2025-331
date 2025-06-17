@@ -16,10 +16,11 @@ router.get('/formABMproductos', vistaAdmin.renderAlta);
 // Ruta a crear user
 router.get('/createUser', vistaAdmin.renderCreate);
 
-//rutas post
-router.post('/nuevoProducto', vistaAdmin.renderDashboard) 
 //
 router.get('/formABMproductos/:id', vistaAdmin.renderFormEditar);
+
+//rutas post
+router.post('/nuevoProducto', controlador.createProd)
 
 router.post('/editado', vistaAdmin.renderDashboard)
 

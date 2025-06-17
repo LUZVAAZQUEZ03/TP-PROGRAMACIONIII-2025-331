@@ -21,39 +21,26 @@ exports.getActive = (req, res) => {
     });
 };
 
-exports.create = async (req, res) => {
-    const productName = req.body.nombre;
-    const precio = req.body.precio
-    const stock = req.body.stock
-    const image = req.body.foto
-    const category = req.body.category
-    console.log(productName,precio,stock,image,category)
+exports.createProd = async (req, res) => {
+    const { nombre,precio,stock, foto: fotoProducto, category: categoria } = req.body;
     
+    console.log(nombre,precio,stock,fotoProducto,categoria)
     try {
-        await validateProduct.validate(productName,precio,stock,image,category);
-        
-        const nuevoProducto = { productName,precio,stock,image,category };
+        await validateProduct.validate(nombre,precio,stock,fotoProducto,categoria);
+        const estado = 1;
+        const nuevoProducto = { nombre,precio,stock,fotoProducto,categoria, estado };
         
         Producto.create(nuevoProducto, (err, result) => {
             if (err) return res.status(500).json({ error: 'Error al crear producto' });
-            res.json({ mensaje: 'Producto creado', id: result.insertId });
+            //res.json({ mensaje: 'Producto creado', id: result.insertId });
+            res.redirect('/admin/dashboard');
         });
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
-};
-
-
-/*
-exports.update = (req, res) => {
-    const id = req.params.id;
-    const datos = req.body;
-    
-    res.render('formABMproductos', { modo: 'modificar', datos });
-    res.json({ mensaje: 'Producto actualizado' });
-    
     };
-    */
+
+
     exports.update = async (req, res) => {
         const id = req.params.id;
 
