@@ -1,9 +1,10 @@
 const validateProduct = {
     // Validar nombre del producto: obligatorio, mínimo 3, máximo 50 caracteres
     async validateName(productName) {
-        if (typeof productName !== 'string' || productName.trim().length < 3 || productName.length > 50) {
-            throw new Error("El nombre del producto debe tener entre 3 y 50 caracteres.");
+        if (typeof productName !== 'string' || productName.trim().length < 3 || productName.length > 100) {
+            throw new Error("El nombre del producto debe tener entre 3 y 100 caracteres.");
         }
+        return productName;
     },
 
     // Validar precio
@@ -32,9 +33,8 @@ const validateProduct = {
 
     // Validar categoría
     async validateCategory(category) {
-        if (category !== 'Perfume' || category !== 'Skincare') {
-            throw new Error('solo pueden ser tipo Perfume o Skincare');
-        }
+        if (!['Perfume', 'Skincare'].includes(category))
+            throw new Error('La categoría debe ser "Perfume" o "Skincare"');        
     },
 
     async validate(productName,precio,stock,image,category){
@@ -42,7 +42,7 @@ const validateProduct = {
             await this.validateName(productName);
             await this.validatePrecio(precio);
             await this.validateStock(stock);
-            await this.validateImage(image);
+          //  await this.validateImage(image);
             await this.validateCategory(category);
 
             console.log("Todas las validaciones correctas.");

@@ -18,18 +18,19 @@ router.get('/createUser', vistaAdmin.renderCreate);
 
 //rutas post
 router.post('/nuevoProducto', vistaAdmin.renderDashboard) 
-//segun yo esto tendría que usar la api en post y agregar a la bd, cómo? no tengo puta ideaa
+//
 router.get('/formABMproductos/:id', vistaAdmin.renderFormEditar);
 
-router.post('/editado',vistaAdmin.renderDashboard)
+router.post('/editado', vistaAdmin.renderDashboard)
+
+router.post('/producto/modificar/:id', controlador.update);
 
 router.post('/desactivar/:id', controlador.desactivar);
 
 router.post('/activar/:id', controlador.activar);
 
+//render.post('/createUser', )
 
-
-
-
+//render.post('/log', )
 
 module.exports = router; 

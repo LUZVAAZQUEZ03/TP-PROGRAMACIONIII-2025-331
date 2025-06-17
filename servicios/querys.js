@@ -26,5 +26,14 @@ module.exports = {
 
     activate(id, cb) {
         db.query('UPDATE productos SET estado = 1 WHERE id = ?', [id], cb);
+    },
+
+    createUser(user, cb){
+        db.query('INSERT INTO usuarios SET ?', user, cb)
+    },
+
+    getUser(user, pass, cb){
+        db.query('SELECT * FROM usuarios WHERE user = ? AND password = ?', [user, pass], cb);
     }
+    
     };

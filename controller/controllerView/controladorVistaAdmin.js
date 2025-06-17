@@ -4,7 +4,6 @@ exports.renderLog = (req, res) => {
     res.render('login'); // vista login.ejs
 };
 
-
 exports.renderDashboard = (req, res) => {
     res.render('dashboard', {res});
 };

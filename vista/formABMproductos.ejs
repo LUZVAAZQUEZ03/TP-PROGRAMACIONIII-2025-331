@@ -11,13 +11,19 @@
             <% } %>
             <%if(modo === "modificar") {%>
                 <h1>Modificar Producto</h1>
-                <form method="POST" action="/editado">
+                <form method="POST" action="/admin/producto/modificar/<%= producto.id %>">
             <% } %>
             
-                <input class="input-text" type="text" id="nombre" required placeholder="Ingrese Nombre" value="<%= producto?.nombre || '' %>"><br>
-                <input class="input-text" type="text" min="0" id="precio" required placeholder="Ingrese Precio" pattern="\d+(.\d{1,2})?" value="<%= producto?.precio ? producto.precio.replace(',', '.') : '' %>"><br>
-                <input class="input-text" type="number" min="0" id="stock" required placeholder="Ingrese CantidadCantidad" value="<%= producto?.stock || '' %>"><br> 
-                <input class="input-text" type="image" id="foto" required placeholder="Ingrese foto del nuevo producto" value="<%= producto?.fotoProducto || '' %>"><br>
+                <input class="input-text" type="text" name="nombre"  id="nombre" required placeholder="Ingrese Nombre" value="<%= producto?.nombre || '' %>"><br>
+                <input class="input-text" type="text" name="precio" min="0" id="precio" required placeholder="Ingrese Precio" pattern="\d+(.\d{1,2})?" value="<%= producto?.precio ? producto.precio.replace(',', '.') : '' %>"><br>
+                <input class="input-text" type="number" name="stock" min="0" id="stock" required placeholder="Ingrese CantidadCantidad" value="<%= producto?.stock || '' %>"><br> 
+                <input class="input-text" type="text" name="foto" id="foto" required placeholder="Ingrese foto del nuevo producto" value="<%= producto?.fotoProducto || '' %>"><br>
+                <select class="input-text" name="category" id="category">
+                    <option value="none" <%= !producto?.categoria ? 'selected' : '' %>></option>
+                    <option value="Skincare" <%= producto?.categoria === 'Skincare' ? 'selected' : '' %>>Skincare</option>
+                    <option value="Perfume" <%= producto?.categoria === 'Perfume' ? 'selected' : '' %>>Perfume</option>
+                </select><br>
+
                 <button type="button" onclick="location.href='/admin/dashboard'" class="boton">Cancelar</button>
                 <button type="submit" class="boton">Guardar</button> 
             </form>
