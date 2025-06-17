@@ -8,6 +8,17 @@ class Producto {
         this.categoria = categoria; // 'Perfume' o 'Skincare'
         this.estado = true;
     }
+    static createFromObject(obj) {
+    return new Producto(
+        obj.id,
+        obj.nombre,
+        obj.precio,
+        obj.stock,         
+        `http://localhost:3000/${obj.fotoProducto}`,
+        obj.categoria
+    );
+}
+
     guardarProductoCarrito() {
         const clave = `producto${this.id}`; //aca traigo el id de mi serie
         localStorage.setItem(clave, this.toJsonString());  //local storage solo recive strings
