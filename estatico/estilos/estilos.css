@@ -268,25 +268,37 @@ a{
 /* Categories section */
 .categories {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 30px;
+    margin-bottom: 3rem;
+    gap:3rem;
+    padding: 2rem;
 }
 
-.category {
-    flex: 1;
-    margin: 10px;
+@media (min-width: 1100px) {
+    .category {
+        display: block;
+        margin-left: 15rem;
+    }
+    .category:first-of-type {
+        margin-left: 0;
+    }
 }
-
 .category h2 {
     text-align: center;
     margin-bottom: 1rem;
 }
-
+.botones{
+    display: flex;
+    align-items: center;
+}
 .box {
-    width: auto;
+    width: 50rem;
     height: auto;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .pink {
@@ -296,6 +308,7 @@ a{
 .mint {
     background-color: var(--colorSkinCare);
 }
+
 
 /* Responsive */
 @media (max-width: 478px) {
@@ -325,7 +338,26 @@ a{
         flex-direction: column;
     }
 }
+/*PRODUCTOS API*/
+.producto {
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    }
 
+.producto:hover {
+    transform: scale(1.03);
+}
+.producto img {
+    display: block;           
+    max-width: 100%;           
+    height: 20rem;             
+    margin: 1.5rem auto 0 auto;
+    object-fit: contain;    
+    border-radius: .5rem ;
+}
 /*carrito*/
 .item__imagen{
     width: 12rem;
