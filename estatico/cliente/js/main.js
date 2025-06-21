@@ -3,10 +3,12 @@ import { Modelo } from "./modelos/Modelo.js";
 
 import { VistaBienvenido } from "./vistas/vistaBienvenido.js";
 import { VistaProductos } from "./vistas/vistaProductos.js";
-
+import { VistaCarrito } from "./vistas/vistaCarrito.js";
 
 import { ControlBienvenido } from "./controles/loginController.js";
 import { ControlProductos } from "./controles/productosController.js";
+import { ControlCarrito } from "./controles/carritoController.js";
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const modelo = new Modelo();
@@ -23,12 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     else if (path.includes("carrito.html")) {
-        const vistaCarrito = new vistaCarrito();
+        const vistaCarrito = new VistaCarrito();
         new ControlCarrito(modelo, vistaCarrito);
     }
 
     else if (path.includes("ticket.html")) {
-        const vistaTicket = new VistaTicket();
+        const vistaTicket = new vistaTicket();
         new ControlTicket(modelo, vistaTicket);
     }
 

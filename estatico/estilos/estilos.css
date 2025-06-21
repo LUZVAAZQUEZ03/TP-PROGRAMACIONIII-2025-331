@@ -381,9 +381,29 @@ a{
 }
 
 .product-quantity {
-    width: 80px;
+    width: 8rem;
 }
-
+.acciones_carrito{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+.total-general{
+    display: flex;
+    color:var(--mainTxtColor);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    background-color: var(--borderColor);
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+.total-general p{
+    font-size: 1.4rem;
+}
 .input-text2 {
     width: 100%;
     padding: 0.3rem;

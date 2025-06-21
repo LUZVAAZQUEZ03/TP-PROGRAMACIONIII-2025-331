@@ -68,7 +68,7 @@ class Producto {
 
         btnAgregarCarrito.textContent = "Agregar al Carrito";
         btnAgregarCarrito.addEventListener('click', () => {
-            this.guardarSerie();
+            this.guardarProductoCarrito();
         });
         img.addEventListener('click', () => {
             window.open(this.url, '_blank');

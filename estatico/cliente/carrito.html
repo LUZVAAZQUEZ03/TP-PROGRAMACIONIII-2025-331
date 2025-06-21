@@ -25,36 +25,17 @@
             </nav>
     </header>
     <main>
-        <div class="container">
+        <div class="container" id="carrito-container">
             <h2>Carrito de compras</h2>
-
-            <div class="carrito-item" id="item-1">
-                <img src="../img/imagenProductos.png" alt="Imagen Ejemplo producto" class="item__imagen">
-
-                <div class="item__detalle">
-                    <p class="item__nombre">Eclaire Parfum</p>
-                    <p class="item__precio">$60.00</p>
-                </div>
-
-                <div class="product-quantity">
-                    <input class="input-text2" type="number" value="1" min="1">
-                </div>
-
-                <p class="product-total">$60.00</p>
-
-                <button id="btnRemover" class="boton">Quitar del carrito</button>
+        </div>
+        <div class="total-general">
+                <p>Total:</p>
+                <p id="valorTotal">$0.00</p>
             </div>
-
-            <div class="subtotal">
-                <span>Subtotal</span>
-                <span>$60.00</span>
-            </div>
-
-            <div class="acciones_carrito">
+        <div class="acciones_carrito">
                 <button class="boton" id="finalizar-btn">Finalizar</button>
                 <button class="boton" id="continuar-btn">Continuar comprando</button>
             </div>
-        </div>
     </main>
     <footer class="footer" id="footer">
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
@@ -64,5 +45,6 @@
             <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"> <img src="../img/Email.png" alt="Contacto"> Contacto</a>
         </div>
     </footer>
+    <script type="module" src="js/main.js"></script>
 </body>
 </html>
