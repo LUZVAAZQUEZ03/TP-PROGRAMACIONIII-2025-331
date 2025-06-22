@@ -1,12 +1,11 @@
 const user = require('./user')
 const bcrypt = require('bcrypt');
 
-
 const validateAdmin = {
     // Validar username 
     async validateUsername(userName) {
-        if (typeof userName !== 'string' || userName.length < 4 || userName.length > 12) {
-            throw new Error('El nombre de usuario debe tener entre 4 y 12 caracteres.');
+        if (typeof userName !== 'string' || userName.length < 2 || userName.length > 12) {
+            throw new Error('El nombre de usuario debe tener entre 3 y 12 caracteres.');
         }
     },
 
@@ -23,17 +22,32 @@ const validateAdmin = {
         if (passA !== passB) {
             throw new Error("Las contraseñas deben coincidir.");
         }
-        if (typeof passA !== 'string' || passA.length < 6 || passA.length > 18) {
+        if (typeof passA !== 'string' || passA.length < 3 || passA.length > 18) {
             throw new Error("La contraseña debe tener entre 6 y 18 caracteres.");
         }
     },
 
-    async validateAdmin(userName, mail, passA,passB){
+    // Validar admin
+    async validate(userName, mail, passA,passB){
         await this.validateUsername(userName);
         await this.validateMail(mail);
         await this.validatePass(passA,passB);
+    },
 
+    async encriptar(pass) {
+    try {
+        const hash = await bcrypt.hash(pass, 10);
+        return hash;
+    } catch (err) {
+        throw err;
+        };
+    },
+
+    async desencriptar(pass, hash){
+        const clave = await bcrypt.compare(pass, hash);
+        return clave
     }
-};
+
+};   
 
 module.exports = validateAdmin;

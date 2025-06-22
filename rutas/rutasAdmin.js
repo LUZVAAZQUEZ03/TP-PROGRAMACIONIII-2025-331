@@ -20,16 +20,19 @@ router.get('/createUser', vistaAdmin.renderCreate);
 router.get('/formABMproductos/:id', vistaAdmin.renderFormEditar);
 
 //rutas post
-router.post('/nuevoProducto', controlador.createProd)
+router.post('/nuevoProducto', controlador.createProd) //crea productos
 
-router.post('/editado', vistaAdmin.renderDashboard)
+router.post('/editado', vistaAdmin.renderDashboard) //una vez editado
 
-router.post('/producto/modificar/:id', controlador.update);
+router.post('/producto/modificar/:id', controlador.update); //
 
 router.post('/desactivar/:id', controlador.desactivar);
 
 router.post('/activar/:id', controlador.activar);
 
+router.post('/dashboard', controlador.ingresar);
+
+router.post('/', controlador.createUser)
 //render.post('/createUser', )
 
 //render.post('/log', )

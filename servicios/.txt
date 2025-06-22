@@ -22,10 +22,32 @@ CREATE TABLE usuario(
 	  id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR (100),
     correo VARCHAR (100),
-    passw VARCHAR (300)
+    passw VARCHAR (400)
 
 );
 
+INSERT INTO usuario (usuario, correo, passw) VALUES
+  ('lulu', ' lu@lu.com', '$2b$10$UF/kf6YS6Xv8HNR7dPd7Nu8nQWlvkn358DthXwjke05hDwmZpCRVG'),
+  ('Alice', 'alice@example.com', 'password1'),
+  ('Bob', 'bob@example.com', 'password2'),
+  ('Charlie', 'charlie@example.com', 'password3'),
+  ('David', 'david@example.com', 'password4'),
+  ('Eve', 'eve@example.com', 'password5'),
+  ('Frank', 'frank@example.com', 'password6'),
+  ('Grace', 'grace@example.com', 'password7'),
+  ('Heidi', 'heidi@example.com', 'password8'),
+  ('Ivan', 'ivan@example.com', 'password9'),
+  ('Judy', 'judy@example.com', 'password10'),
+  ('Karl', 'karl@example.com', 'password11'),
+  ('Lily', 'lily@example.com', 'password12'),
+  ('Mallory', 'mallory@example.com', 'password13'),
+  ('Niaj', 'niaj@example.com', 'password14'),
+  ('Olivia', 'olivia@example.com', 'password15');
+
+  
+usuario varchar(100) 
+correo varchar(100) 
+passw
 netstat -ano | findstr :3306
 mysql -u root -p
 exit;
