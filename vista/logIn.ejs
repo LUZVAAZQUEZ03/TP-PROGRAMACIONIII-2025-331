@@ -17,7 +17,16 @@
     </header>
     <main>
         <div class="formularioLogin">
-            <form method="POST" action="/admin/dashboard">
+            <% if (locals.error === 'server') { %>
+                <p>Error en el servidor</p>
+            <% } else if (locals.error === 'user_not_found') { %>
+                <p>Usuario no encontrado</p>
+            <% } else if (locals.error === 'incorrect_password') { %>
+                <p>Contraseña incorrecta</p>
+            <% } else if (locals.error === 'password_check_failed') { %>
+                <p>Error al verificar la contraseña</p>
+            <% } %>
+            <form method="POST" action="/admin/dashboard" >
                 <h2>Inicio de sesion:</h2>
                 <input class="input-text" type="text" id="user" name="user" required placeholder="Nombre de usuario"><br>
                 <input class="input-text" type="password" id="passw1" name="passw1" required placeholder="Contraseña"><br>

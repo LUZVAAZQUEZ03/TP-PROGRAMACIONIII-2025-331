@@ -27,26 +27,16 @@ CREATE TABLE usuario(
 );
 
 INSERT INTO usuario (usuario, correo, passw) VALUES
-  ('lulu', ' lu@lu.com', '$2b$10$UF/kf6YS6Xv8HNR7dPd7Nu8nQWlvkn358DthXwjke05hDwmZpCRVG'),
-  ('Alice', 'alice@example.com', 'password1'),
-  ('Bob', 'bob@example.com', 'password2'),
-  ('Charlie', 'charlie@example.com', 'password3'),
-  ('David', 'david@example.com', 'password4'),
-  ('Eve', 'eve@example.com', 'password5'),
-  ('Frank', 'frank@example.com', 'password6'),
-  ('Grace', 'grace@example.com', 'password7'),
-  ('Heidi', 'heidi@example.com', 'password8'),
-  ('Ivan', 'ivan@example.com', 'password9'),
-  ('Judy', 'judy@example.com', 'password10'),
-  ('Karl', 'karl@example.com', 'password11'),
-  ('Lily', 'lily@example.com', 'password12'),
-  ('Mallory', 'mallory@example.com', 'password13'),
-  ('Niaj', 'niaj@example.com', 'password14'),
-  ('Olivia', 'olivia@example.com', 'password15');
+  ('lulu', ' lu@lu.com', '$2b$10$xQu62uSTQFtnR69y1xGfbOLsJLXo7L.446XLSujX9ySq3bMmA1TvC'),
+  ('aaaa', 'us@us.com', '$2b$10$.f8e/Cd/maH3iXq12m1iBe36.DQEZlO5DGHe5.af56AtqJO79vJeS'),
+  ('bbb',	'bbb@b.com',	'$2b$10$3l2ZBVcsAl7bbjLZWdZrZe.1iOJCC5YPkPIfV1090G8DGYAs/ekRG'),
+  ('David',	'david@example.com', '$2b$10$D7ml0Vv/H.VNnjgK3ROj4uelGYV9If85047SJPJeJnD3uQ8MaSj5u'),
+  ('Alice',	'alice@example.com', '$2b$10$AD2FIHLMZH50IFWIltl6EuWKutVDj4LuX1V.5p24eVRRo9wDwX2oy'),
+  ('Eve',	'eve@example.com', '$2b$10$XeTJ.bRVBbgu1NXEgHT1G.VbwiZBkwNOIzgkaeCRqiLNpx9hyulpu');
 
   
-usuario varchar(100) 
-correo varchar(100) 
+usuario 
+correo 
 passw
 netstat -ano | findstr :3306
 mysql -u root -p

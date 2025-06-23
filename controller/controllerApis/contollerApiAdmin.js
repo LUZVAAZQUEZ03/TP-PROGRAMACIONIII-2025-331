@@ -110,11 +110,11 @@ exports.ingresar = (req, res) => {
     console.log( user, passw1)
     Producto.getUser(user, async (err, respuesta) => {        
         if (err) {
-            return res.status(500).json({ error: "Error en el servidor" });
+            return res.redirect('/admin/?error=server');
         }
         
         if (respuesta.length === 0) {
-            return res.status(401).json({ error: "Usuario no encontrado" });
+            return res.redirect('/admin/?error=user_not_found');
         }
         
         const userDB = respuesta[0];
@@ -129,10 +129,10 @@ exports.ingresar = (req, res) => {
                 res.redirect('/admin/dashboard');
             } else {
                 // Contraseña incorrecta
-                return res.status(401).json({ error: "Contraseña incorrecta" });
+                return res.redirect('/admin/?error=incorrect_password')
             }
         } catch (error) {
-            return res.status(500).json({ error: "Error al verificar la contraseña" });
+            return res.redirect('/admin/?error=password_check_failed');
         }
     });
 };
