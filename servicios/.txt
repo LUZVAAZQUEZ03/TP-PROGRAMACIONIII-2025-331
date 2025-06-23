@@ -22,10 +22,22 @@ CREATE TABLE usuario(
 	  id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR (100),
     correo VARCHAR (100),
-    passw VARCHAR (300)
+    passw VARCHAR (400)
 
 );
 
+INSERT INTO usuario (usuario, correo, passw) VALUES
+  ('lulu', ' lu@lu.com', '$2b$10$xQu62uSTQFtnR69y1xGfbOLsJLXo7L.446XLSujX9ySq3bMmA1TvC'),
+  ('aaaa', 'us@us.com', '$2b$10$.f8e/Cd/maH3iXq12m1iBe36.DQEZlO5DGHe5.af56AtqJO79vJeS'),
+  ('bbb',	'bbb@b.com',	'$2b$10$3l2ZBVcsAl7bbjLZWdZrZe.1iOJCC5YPkPIfV1090G8DGYAs/ekRG'),
+  ('David',	'david@example.com', '$2b$10$D7ml0Vv/H.VNnjgK3ROj4uelGYV9If85047SJPJeJnD3uQ8MaSj5u'),
+  ('Alice',	'alice@example.com', '$2b$10$AD2FIHLMZH50IFWIltl6EuWKutVDj4LuX1V.5p24eVRRo9wDwX2oy'),
+  ('Eve',	'eve@example.com', '$2b$10$XeTJ.bRVBbgu1NXEgHT1G.VbwiZBkwNOIzgkaeCRqiLNpx9hyulpu');
+
+  
+usuario 
+correo 
+passw
 netstat -ano | findstr :3306
 mysql -u root -p
 exit;

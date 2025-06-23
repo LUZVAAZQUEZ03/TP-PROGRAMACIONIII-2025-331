@@ -1,3 +1,4 @@
+const Producto = require('../servicios/querys');
 const validateProduct = {
     // Validar nombre del producto: obligatorio, mínimo 3, máximo 50 caracteres
     async validateName(productName) {

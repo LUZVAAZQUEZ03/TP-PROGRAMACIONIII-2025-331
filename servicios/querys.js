@@ -28,12 +28,16 @@ module.exports = {
         db.query('UPDATE productos SET estado = 1 WHERE id = ?', [id], cb);
     },
 
-    createUser(user, cb){
-        db.query('INSERT INTO usuarios SET ?', user, cb)
+    getStatus(id, cb){
+        db.query('SELECT estado FROM productos WHERE id = ?')
     },
 
-    getUser(user, pass, cb){
-        db.query('SELECT * FROM usuarios WHERE user = ? AND password = ?', [user, pass], cb);
+    createUser(user, cb){
+        db.query('INSERT INTO usuario  SET ?', user, cb)
+    },
+
+    getUser(user, cb){
+        db.query('SELECT * FROM usuario WHERE usuario = ?',user, cb);
     }
     
     };

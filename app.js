@@ -16,6 +16,13 @@ const configApi = (app) =>{
     // app.use(cors(origin: 'http://localhost:5502'));
     app.use(express.urlencoded({extended: true})); //permite que express entienda forms enviados por post
     app.use(express.json());
+    app.use((req, res, next) => { //para manejar los errores en inicio de sesiónnnn
+    if (req.query.error) {
+        res.locals.error = req.query.error;
+    }
+    next();
+    });
+
 
     //sirvo estatico como estatico para poder iniciaer con el index
     app.use(express.static(path.join(__dirname, 'estatico')));
@@ -23,11 +30,8 @@ const configApi = (app) =>{
     app.set('views', path.join(__dirname, 'vista')); //le paso el path de las vistas
 
     app.use('/admin', rutasAdmin); //cargo todas las vistas del admin con /admin
-    app.use('/cliente', rutasCliente); //activo las turas de los clientes con /cliente
-    app.use('/api/productos', rutasProductos);
-
-    //para setear la lectura de los formularios en formato json
-    app.use(express.urlencoded({extended: true}))
+    app.use('/cliente', rutasCliente); //activo las rutas de los clientes con /cliente
+    app.use('/api/productos', rutasProductos); //seteo que todas las apis inicien con /api/productos
 
     return;
 } 

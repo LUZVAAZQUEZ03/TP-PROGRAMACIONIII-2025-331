@@ -3,40 +3,42 @@
 <%- include('partials/head') %>
 <body>
     <%- include('partials/header') %>
-<main>
-    <div class="allProducts">
+<main class="productos">
+    <section class="hero">
         <h1>BeauScent Productos</h1>
-    <div>
-        <button onclick="location.href='/admin/formABMproductos'" class="boton">
+        <button onclick="location.href='/admin/formABMproductos'" class="boton" id="nuevoProd">
             Agregar nuevo
         </button>
+    </section>
 
     <section class="categories" id="categories">
         <div class="category">
             <h2>PERFUMES</h2>
             <div class="box pink" id="perfume">
-                <% data.filter(p => p.categoria === "Perfume").forEach(p => { %>
-                    <div class="dato-prod">
-                        <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %></h3>
-                        <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
-                        <h3><%= p.precio %>$</h3>
-                        <p>
-                            <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
-                            <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
-                                <button type="submit" class="boton">Desactivar</button>
-                            </form>
-                            <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
-                                <button type="submit" class="boton">Activar</button>
-                            </form>
-                        </p>
-                    </div>
-                <% }) %>
+                <div class="producto">
+                    <% data.filter(p => p.categoria === "Perfume").forEach(p => { %>
+                        <div class="dato-prod">
+                            <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %></h3>
+                            <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
+                            <h3><%= p.precio %>$</h3>
+                            <p>
+                                <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
+                                <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
+                                    <button type="submit" class="boton">Desactivar</button>
+                                </form>
+                                <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                                    <button type="submit" class="boton">Activar</button>
+                                </form> 
+                            </p>
+                        </div>
+                    <% }) %>
+                </div>
             </div>
         </div> 
         <div class="category"> 
             <h2>SKINCARE</h2>
             <div class="box mint" id="skincare">
-                <div class="cajita">
+                <div class="producto">
                     <% data.filter(p => p.categoria === "Skincare").forEach(p => { %>
                     <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> </h3>
                     <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
@@ -50,13 +52,13 @@
                             <button type="submit" class="boton">Activar</button>
                         </form>
                     </p> 
-                <% }) %>
-
+                    <% }) %>
                 </div>
             </div>
-            </div>
         </div>
-        </div>
+        </section>
+
+        
     </section>
 
 
