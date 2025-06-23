@@ -24,35 +24,26 @@
             <a href="carrito.html">Carrito</a>
         </nav>
     </header>
-
-    <body>
-        <div class="container">
-            <div class="logo">
-            <img src="../img/beauscent.png" alt="Logo BeauScent">
+        <div class="container" id="ticket-container">
+            <div class="logo" id="logo-ticket">
+                <img src="../img/beauscent.png" alt="Logo BeauScent">
             </div>
-            <h1>Gracias por tu compra, Sasha</h1>
+            <div class="ticket-header" id="ticket-header">
+            </div>
             
-            <div class="ticket-info">
-                <p><strong>Producto:</strong> Perfume Rose Mist</p>
-                <p><strong>Categoría:</strong> Perfumes</p>
-                <p><strong>Cantidad:</strong> 2</p>
-                <p><strong>Precio Unitario:</strong> $4500</p>
-                <hr style="margin: 1rem 0; border: 1px solid #555;">
-                <p><strong>Producto:</strong> Gel Facial Fresh</p>
-                <p><strong>Categoría:</strong> Skincare</p>
-                <p><strong>Cantidad:</strong> 1</p>
-                <p><strong>Precio Unitario:</strong> $3200</p>
+            <div class="ticket-info" id="ticket-info">
+
             </div>
 
-            <div class="ticket-total">
-            Total: $12.200
-            </div>
+            <div class="ticket-total" id="ticket-total">
 
-            <button id="volver-btn" class="boton" onclick="window.location.href='productos.html'">Volver a Productos</button>
+            </div>
+            <div class="acciones_ticket" id="acciones_ticket">
+                <button class="boton"id="descargar-pdf-btn">Descargar Ticket en PDF</button>
+
+            </div>
         </div>
-    </body>
-
-    <footer class="footer" id="footer">
+        <footer class="footer" id="footer">
         <p>&copy; 2025 BeauScent. Todos los derechos reservados.</p>
         <div class="redes">
             <a href="https://www.instagram.com/beauscentt/" aria-label="Instagram"><img src="../img/instagram.png" alt="Instagram">Instagram</a>
@@ -60,7 +51,6 @@
             <a href="mailto:beauscentt@gmail.com" aria-label="Contacto"><img src="../img/Email.png" alt="Contacto">Contacto</a>
         </div>
     </footer>
-
-    <script src="/vista/vistaTicket.js"></script>
+    <script type=module src= "js/main.js"></script>
 </body>
 </html>

@@ -1,73 +1,107 @@
-class VistaCarrito{
+class VistaCarrito {
     constructor() {
         this.contenedorItems = this.$("carrito-container");
         this.botonContinuar = this.$("continuar-btn");
-        this.botonFin= this.$("finalizar-btn");
+        this.botonFin = this.$("finalizar-btn");
         this.botonesSacar = this.$all(".removerBtn");
         this.contenedorSubtotal = this.$all(".subtotal");
         this.valorSubtotal = this.$("valorSubtotal");
         this.valorTotal = this.$("valorTotal");
+
+        this.productosAGuardar = [];
     }
 
     $(id) {
         return document.getElementById(id);
     }
+
     $all(selector) {
         return document.querySelectorAll(selector);
     }
 
     mostrarProductosCarrito(productosCarrito) {
-        this.contenedorItems.innerHTML = "";
+        this.resetearVista();
+
         if (productosCarrito.length === 0) {
-            this.contenedorItems.innerHTML = "<p>El carrito está vacío.</p>";
-            if (this.valorSubtotal) {
-                this.valorSubtotal.textContent = "0.00";
-            }
-            if (this.valorTotal) {
-                this.valorTotal.textContent = "$0.00";
-            }
+            this.mostrarCarritoVacio();
             return;
         }
 
         productosCarrito.forEach((producto, index) => {
-            const item = document.createElement("div");
-            item.className = "carrito-item";
-
-            item.innerHTML = `
-                <img src="${producto.fotoProducto}" alt="${producto.nombre}" class="item__imagen" />
-                <div class="item__detalle">
-                    <p class="item__nombre">${producto.nombre}</p>
-                    <p class="item__precio">$${producto.precio}</p>
-                </div>
-                <div class="product-quantity">
-                    <input class="input-text2" type="number" value="1" min="1" max="${producto.stock}" data-index="${index}">
-                </div>
-                <p class="product-total" id="total-${index}">$${producto.precio}</p>
-                <button class="boton removerBtn" data-idx="${index}">Quitar del carrito</button>
-            `;
-
+            const item = this.crearItemCarrito(producto, index);
             this.contenedorItems.appendChild(item);
-            
-            const inputCantidad = item.querySelector('input[type="number"]');
-            const totalElemento = item.querySelector(`#total-${index}`);
-
-            inputCantidad.addEventListener("input", (e) => {
-                let cantidad = parseInt(e.target.value);
-                if (cantidad > producto.stock) {
-                    alert(`Solo hay ${producto.stock} unidades disponibles.`);
-                    cantidad = producto.stock;
-                    e.target.value = producto.stock;
-                }
-                const total = producto.precio * cantidad;
-                totalElemento.textContent = `$${total.toFixed(2)}`;
-
-                // Recalculo subtotal
-                this.actualizarSubtotal();
-            });
-
-            this.actualizarSubtotal();
         });
+
+        this.actualizarLocalStorage();
+        this.actualizarSubtotal();
     }
+
+    resetearVista() {
+        this.contenedorItems.innerHTML = "";
+    }
+
+    mostrarCarritoVacio() {
+        this.contenedorItems.innerHTML = "<p>El carrito está vacío.</p>";
+        if (this.valorSubtotal) this.valorSubtotal.textContent = "0.00";
+        if (this.valorTotal) this.valorTotal.textContent = "$0.00";
+    }
+
+    crearItemCarrito(producto, index) {
+        const item = document.createElement("div");
+        item.className = "carrito-item";
+
+        item.innerHTML = `
+            <img src="${producto.fotoProducto}" alt="${producto.nombre}" class="item__imagen" />
+            <div class="item__detalle">
+                <p class="item__nombre">${producto.nombre}</p>
+                <p class="item__precio">$${producto.precio}</p>
+            </div>
+            <div class="product-quantity">
+                <input class="input-text2" type="number" value="1" min="1" max="${producto.stock}" data-index="${index}">
+            </div>
+            <p class="product-total" id="total-${index}">$${producto.precio}</p>
+            <button class="boton removerBtn" data-idx="${index}">Quitar del carrito</button>
+        `;
+
+        const inputCantidad = item.querySelector('input[type="number"]');
+        const totalProductElem = item.querySelector(`#total-${index}`);
+
+        const productoConCantidad = {
+            ...producto,
+            cantidad: 1,
+            totalProduct: producto.precio
+        };
+        this.productosAGuardar.push(productoConCantidad);
+
+        inputCantidad.addEventListener("input", (e) =>
+            this.manejarCambioCantidad(e, producto, index, totalProductElem)
+        );
+
+        return item;
+    }
+
+    manejarCambioCantidad(e, producto, index, totalProductElem) {
+        let cantidad = parseInt(e.target.value);
+        if (cantidad > producto.stock) {
+            alert(`Solo hay ${producto.stock} unidades disponibles.`);
+            cantidad = producto.stock;
+            e.target.value = producto.stock;
+        }
+
+        const total = producto.precio * cantidad;
+        totalProductElem.textContent = `$${total.toFixed(2)}`;
+
+        this.productosAGuardar[index].cantidad = cantidad;
+        this.productosAGuardar[index].totalProduct = total;
+
+        this.actualizarSubtotal();
+        this.actualizarLocalStorage();
+    }
+
+    actualizarLocalStorage() {
+        localStorage.setItem("productosTicket", JSON.stringify(this.productosAGuardar));
+    }
+
     actualizarSubtotal() {
         const totales = document.querySelectorAll(".product-total");
         let subtotal = 0;
@@ -79,9 +113,10 @@ class VistaCarrito{
         if (this.valorSubtotal) {
             this.valorSubtotal.textContent = subtotal.toFixed(2);
         }
-        if(this.valorTotal){
-            this.valorTotal.textContent = `$${subtotal.toFixed(2)}`; 
+        if (this.valorTotal) {
+            this.valorTotal.textContent = `$${subtotal.toFixed(2)}`;
         }
+    }
 }
-}
-export {VistaCarrito};
+
+export { VistaCarrito };
