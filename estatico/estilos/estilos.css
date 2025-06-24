@@ -200,6 +200,14 @@ a{
     margin: 1.5rem auto 0 auto;
     object-fit: contain;       
 }
+.producto p{
+    background-color: var(--hoverActive);
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+    display: inline-block;  
+    padding: 0.5rem 1rem;   
+    margin: 0 auto; 
+}
 .navegacion{
     margin-top: 5rem;
 }
