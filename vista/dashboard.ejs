@@ -33,18 +33,18 @@
                             <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %></h3>
                             <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
                             <h3><%= p.precio %>$</h3>
-                            <p>
+                            
                                 <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
                                 <% if (p.activo ) { %>
-                                    <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
+                                    <form action="/admin/desactivar/<%= p.id %>" method="post" ">
                                         <button type="submit" class="boton">Desactivar</button>
                                     </form>
                                 <% } else { %>
-                                    <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                                    <form action="/admin/activar/<%= p.id %>" method="post" ">
                                         <button type="submit" class="boton">Activar</button>
                                     </form>
                                 <% } %>
-                            </p>
+                            
                         </div>
                     <% }) %>
                 </div>
@@ -58,19 +58,16 @@
                     <h3><%= p.nombre.charAt(0).toUpperCase() + p.nombre.slice(1); %> </h3>
                     <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
                     <h3><%= p.precio %>$</h3>
-                    <p>
                         <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
                         <% if (p.activo ) { %>
                             <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
                                 <button type="submit" class="boton">Desactivar</button>
                             </form>
                         <% } else { %>
-                            <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                            <form action="/admin/activar/<%= p.id %>" method="post" ;">
                                 <button type="submit" class="boton">Activar</button>
                             </form>
                         <% } %>
-
-                    </p> 
                     <% }) %>
                 </div>
             </div>
