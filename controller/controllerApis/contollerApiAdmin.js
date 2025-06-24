@@ -1,6 +1,6 @@
 const Producto = require('../../servicios/querys');
-const validateProduct = require('../../model/validacionesProducto'); // ajustá la ruta si es necesario
-const validateUser = require('../../model/validacionesCuentas'); // ajustá la ruta si es necesario
+const validateProduct = require('../../model/validacionesProducto'); 
+const validateUser = require('../../model/validacionesCuentas'); 
 const { hash } = require('bcrypt');
 const bcrypt = require('bcrypt');
 
@@ -29,6 +29,12 @@ exports.createProd = async (req, res) => {
     const { nombre, precio, stock, foto: fotoProducto, category: categoria } = req.body;
     
     console.log(nombre, precio, stock, fotoProducto, categoria)
+    // fotoProducto = req.body.foto || '';
+
+    if (req.file) {
+        fotoProducto = '/productos/' + req.file.filename;
+    }
+
     try {
         await validateProduct.validate(nombre, precio,stock, fotoProducto, categoria);
         const estado = 1;
@@ -47,6 +53,10 @@ exports.update = async (req, res) => {
 
     const { nombre,precio,stock, foto: fotoProducto, category: categoria } = req.body;
     console.log(nombre,precio,stock,fotoProducto,categoria)
+
+    if (req.file) {
+        fotoProducto = '/productos/' + req.file.filename;
+    }
     try {
     
         await validateProduct.validate(nombre,precio,stock,fotoProducto,categoria );
