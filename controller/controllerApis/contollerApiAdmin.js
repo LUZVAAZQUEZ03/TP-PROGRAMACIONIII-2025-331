@@ -5,38 +5,38 @@ const { hash } = require('bcrypt');
 const bcrypt = require('bcrypt');
 
 
-exports.getAll = (req, res) => {
-    Producto.getAll((err, data) => {
-        if (err){
-        return res.status(500).json({ error: 'Error al obtener productos' });
-        }    
-        res.render('dashboard', {data})
-        console.log(data)
-    });
+exports.getAll = async(req, res) => {
+    try {
+        const data = await Producto.getAll(); 
+        res.render('dashboard', { data }); 
+    } catch (error) {
+        res.status(500).send('Error al obtener productos controller');
+    }
+
 };
-exports.getActive = (req, res) => {
-    Producto.getActive((err, data) => {
-        if (err){
-        return res.status(500).json({ error: 'Error al obtener productos' });
-        }    
-        res.json(data);
+
+exports.getActive = async (req, res) => {
+    try {
+        const data = await Producto.getAll(); 
+        res.json( data ); 
         console.log(data)
-    });
+    } catch (error) {
+        res.status(500).send('Error al obtener productos');
+    }
 };
 
 exports.createProd = async (req, res) => {
-    const { nombre,precio,stock, foto: fotoProducto, category: categoria } = req.body;
+    const { nombre, precio, stock, foto: fotoProducto, category: categoria } = req.body;
     
-    console.log(nombre,precio,stock,fotoProducto,categoria)
+    console.log(nombre, precio, stock, fotoProducto, categoria)
     try {
-        await validateProduct.validate(nombre,precio,stock,fotoProducto,categoria);
+        await validateProduct.validate(nombre, precio,stock, fotoProducto, categoria);
         const estado = 1;
-        const nuevoProducto = { nombre,precio,stock,fotoProducto,categoria, estado };
+        const nuevoProducto = { nombre, precio, stock, fotoProducto, categoria, estado };
         
-        Producto.create(nuevoProducto, (err, result) => {
-            if (err) return res.status(500).json({ error: 'Error al crear producto' });
-            res.redirect('/admin/dashboard');
-        });
+        await Producto.create(nuevoProducto);
+
+        res.redirect('/admin/dashboard');
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -47,40 +47,43 @@ exports.update = async (req, res) => {
 
     const { nombre,precio,stock, foto: fotoProducto, category: categoria } = req.body;
     console.log(nombre,precio,stock,fotoProducto,categoria)
-    
     try {
+    
         await validateProduct.validate(nombre,precio,stock,fotoProducto,categoria );
         
-        const productoModificado = { nombre,precio,stock,fotoProducto,categoria  };
+        const productoModificado = { nombre,precio,stock,fotoProducto,categoria };
         
-        Producto.updateById(id, productoModificado, (err) => {
-            if (err) {
-                return res.status(500).json({ error: 'Error al actualizar producto' });
-            }
-            res.redirect('/admin/dashboard');
-        });
+        await Producto.updateById(id, productoModificado);
+
+        res.redirect('/admin/dashboard');
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-exports.activar = (req, res) => {
+exports.activar = async (req, res) => {
     const id = req.params.id;
 
-    Producto.activate(id, (err) => {
-        if (err) return res.status(500).send('Error al activar producto');
+    try{
+        await Producto.activate(id);
+    
         res.redirect('/admin/dashboard');
-    });
+        console.log("activado");
+    }catch(error){
+        throw (error)
+    }
 }
 
-exports.desactivar = (req, res) => {
+exports.desactivar = async(req, res) => {
     const id = req.params.id;
-
-    Producto.drop(id, (err) => {
-        if (err) return res.status(500).json({ error: 'Error al desactivar' });
-        res.redirect('/admin/dashboard');
-        console.log("desactivado")
-    });
+    
+    try{
+        await Producto.drop(id)
+        res.redirect('/admin/dashboard')
+        console.log("desactivado");
+    }catch (error){
+        throw error;
+    }
 };
 
 exports.createUser = async (req, res) =>{
@@ -94,21 +97,22 @@ exports.createUser = async (req, res) =>{
         const usuario = { usuario: user,correo: mail, passw: hash};
         console.log(usuario)
 
-        Producto.createUser(usuario, (err) => {
-            if (err) return res.status(500).json({ error: 'Error al crear usuario' });
-            console.log('usuario creado <3')
-            res.redirect('/admin/');
-        });
+        await Producto.createUser(usuario)
+        //if (err) res.redirect('/admin/createUser/?error=server');;
+        console.log('usuario creado <3')
+        res.redirect('/admin/');
+
 
     } catch (error){
-        throw error;
+        res.redirect('/admin/createUser/?error=server');
     };
 };
 
-exports.ingresar = (req, res) => {
+exports.ingresar = async(req, res) => {
     const { user, passw1 } = req.body;
     console.log( user, passw1)
-    Producto.getUser(user, async (err, respuesta) => {        
+
+     /* Producto.getUser(user, async (err, respuesta) => {        
         if (err) {
             return res.redirect('/admin/?error=server');
         }
@@ -117,12 +121,14 @@ exports.ingresar = (req, res) => {
             return res.redirect('/admin/?error=user_not_found');
         }
         
-        const userDB = respuesta[0];
-        console.log( userDB)
+        const userDB = respuesta[0];*/
         
         try {
-            const match = await bcrypt.compare(passw1, userDB.passw); 
-            console.log(match)
+            const userDB = await Producto.getUser(user);
+            console.log('useeeerdb ', userDB[0].passw)
+
+            const match = await bcrypt.compare(passw1, userDB[0].passw); 
+            console.log('matchhh' + match)
 
             if (match) {
                 // Contraseña válida
@@ -134,5 +140,4 @@ exports.ingresar = (req, res) => {
         } catch (error) {
             return res.redirect('/admin/?error=password_check_failed');
         }
-    });
 };

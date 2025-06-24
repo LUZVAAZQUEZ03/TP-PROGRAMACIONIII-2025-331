@@ -2,9 +2,24 @@
 <html lang="es">
 <%- include('partials/head') %>
 <body>
-    <%- include('partials/header') %>
+    <header >
+        <div class="contenedor header-productos">
+            <div class="logo">
+                <img src="/img/beauscent.png" alt="">
+            </div>
+            <div class="nombres">
+                <p>Torales Sasha Micaela, Vázquez Luz</p>
+            </div>
+            <nav class="navegacion">
+                <a href="/admin/">Ingresar</a>
+            </nav>
+        </div>
+    </header> 
     <main>
         <div class="formularioAlta">
+            <% if (locals.error === 'server') { %>
+                <p>Error al crear Usuario</p>
+            <% } %>
             <form method="post" action="/admin/">
                 <h2>Bienvenido:</h2>
                 <input class="input-text" type="text" id="user" name="user" required placeholder="Usuario"><br>

@@ -1,43 +1,117 @@
-const db = require('./db_conect');
+const conexion = require('./db_conect');
+const {executeQuery }= require('./db_conect');
 
 module.exports = {
-    getAll(cb) {
-        db.query('SELECT * FROM productos', cb);
-    },
-    getActive(cb){
-        db.query('SELECT * FROM productos WHERE estado = 1',cb)
-    },
 
-    create(producto, cb) {
-        db.query('INSERT INTO productos SET ?', producto, cb);
-    },
+    async getAll() {
+        const query = `SELECT * FROM productos`;
 
-    getById(id, cb){
-        db.query('SELECT * FROM productos WHERE id = ?', [id], cb);
+        try {
+            const result = await executeQuery(query);
+            return result;
+        } catch (error) {
+            throw error;
+        }
     },
-
-    updateById(id, producto, cb) {
-        db.query('UPDATE productos SET ? WHERE id = ?', [producto, id], cb);
-    },
-
-    drop(id, cb) {
-        db.query('UPDATE productos SET estado = 0 WHERE id = ?', [id], cb);
-    },
-
-    activate(id, cb) {
-        db.query('UPDATE productos SET estado = 1 WHERE id = ?', [id], cb);
-    },
-
-    getStatus(id, cb){
-        db.query('SELECT estado FROM productos WHERE id = ?')
-    },
-
-    createUser(user, cb){
-        db.query('INSERT INTO usuario  SET ?', user, cb)
-    },
-
-    getUser(user, cb){
-        db.query('SELECT * FROM usuario WHERE usuario = ?',user, cb);
-    }
     
-    };
+    async getActive(){
+        const query = 'SELECT * FROM productos WHERE estado = 1';
+        try {
+            const result = await executeQuery(query);
+            return result;
+        } catch (error) {
+            throw error;
+        }
+    },
+    
+    async create(producto) {
+        const query = 'INSERT INTO productos SET nombre = ?, precio = ?, stock = ?, fotoProducto = ?, categoria = ?, estado = ? ';
+        const params = [producto.nombre, producto.precio, producto.stock, producto.fotoProducto, producto.categoria, producto.estado]
+        try{
+            const result = await executeQuery(query, params);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+    
+    
+    async getById(id){
+        const query = 'SELECT * FROM productos WHERE id = ?';
+        try{
+            const result = await executeQuery(query,[id]);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+    
+    async updateById(id, producto) {
+        // console.log("recibo en la qry -> " , producto.nombre)
+        const query = 'UPDATE productos SET nombre = ?, precio = ?, stock = ?, fotoProducto = ?, categoria = ? WHERE id = ?' ;
+        const params = [producto.nombre, producto.precio, producto.stock, producto.fotoProducto, producto.categoria,  id]
+        console.log('mis params son ->' , params);
+        try{
+            const result = await executeQuery(query, params);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    
+    },
+    
+    async drop(id) {
+        const query = 'UPDATE productos SET estado = 0 WHERE id = ?';
+        try{
+            const result = await executeQuery(query,[id]);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+    
+    async activate(id) {
+        const query = 'UPDATE productos SET estado = 1 WHERE id = ?';
+        try{
+            const result = await executeQuery(query,[id]);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+    
+    async getStatus(id ){
+        const query = 'SELECT estado FROM productos WHERE id = ?';
+        try{
+            const result = await executeQuery(query,[id]);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+    
+    async createUser(user){
+        console.log(user)
+        const query = 'INSERT INTO usuario  SET usuario = ?, correo = ?, passw = ?';
+        const params = [user.usuario, user.correo, user.passw];
+        try{
+            const result = await executeQuery(query, params);
+            console.log(result)
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+    
+    async getUser(user){
+        const query = 'SELECT * FROM usuario WHERE usuario = ?';
+        console.log('usuarioooooo' + user)
+        const params = [user];
+        try{
+            const result = await executeQuery(query, params);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    }
+};

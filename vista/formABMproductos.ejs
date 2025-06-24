@@ -2,7 +2,19 @@
 <html lang="es">
 <%- include('partials/head') %>
 <body>
-    <%- include('partials/header') %>
+    <header >
+        <div class="contenedor header-productos">
+            <div class="logo">
+                <img src="/img/beauscent.png" alt="">
+            </div>
+            <div class="nombres">
+                <p>Torales Sasha Micaela, Vázquez Luz</p>
+            </div>
+            <nav class="navegacion">
+                <a href="/admin/dashboard">Dashboard</a>
+            </nav>
+        </div>
+    </header> 
     <main>
         <div class="ingresar">
             <%if(modo === "alta"){%>
@@ -11,17 +23,17 @@
             <% } %>
             <%if(modo === "modificar") {%>
                 <h1>Modificar Producto</h1>
-                <form method="POST" action="/admin/producto/modificar/<%= producto.id %>">
+                <form method="POST" action="/admin/producto/modificar/<%= producto[0].id %>">
             <% } %>
             
-                <input class="input-text" type="text" name="nombre"  id="nombre" required placeholder="Ingrese Nombre" value="<%= producto?.nombre || '' %>"><br>
-                <input class="input-text" type="text" name="precio" min="0" id="precio" required placeholder="Ingrese Precio" pattern="\d+(.\d{1,2})?" value="<%= producto?.precio ? producto.precio.replace(',', '.') : '' %>"><br>
-                <input class="input-text" type="number" name="stock" min="0" id="stock" required placeholder="Ingrese CantidadCantidad" value="<%= producto?.stock || '' %>"><br> 
-                <input class="input-text" type="text" name="foto" id="foto" required placeholder="Ingrese foto del nuevo producto" value="<%= producto?.fotoProducto || '' %>"><br>
+                <input class="input-text" type="text" name="nombre"  id="nombre" required placeholder="Ingrese Nombre" value="<%= producto[0].nombre || '' %>"><br>
+                <input class="input-text" type="text" name="precio" min="0" id="precio" required placeholder="Ingrese Precio" pattern="\d+(.\d{1,2})?" value="<%= producto[0].precio ? producto[0].precio.replace(',', '.') : '' %>"><br>
+                <input class="input-text" type="number" name="stock" min="0" id="stock" required placeholder="Ingrese CantidadCantidad" value="<%= producto[0].stock || '' %>"><br> 
+                <input class="input-text" type="text" name="foto" id="foto" required placeholder="Ingrese foto del nuevo producto" value="<%= producto[0].fotoProducto || '' %>"><br>
                 <select class="input-text" name="category" id="category">
-                    <option value="none" <%= !producto?.categoria ? 'selected' : '' %>></option>
-                    <option value="Skincare" <%= producto?.categoria === 'Skincare' ? 'selected' : '' %>>Skincare</option>
-                    <option value="Perfume" <%= producto?.categoria === 'Perfume' ? 'selected' : '' %>>Perfume</option>
+                    <option value="none" <%= !producto[0].categoria ? 'selected' : '' %>></option>
+                    <option value="Skincare" <%= producto[0].categoria === 'Skincare' ? 'selected' : '' %>>Skincare</option>
+                    <option value="Perfume" <%= producto[0].categoria === 'Perfume' ? 'selected' : '' %>>Perfume</option>
                 </select><br>
 
                 <button type="button" onclick="location.href='/admin/dashboard'" class="boton">Cancelar</button>

@@ -1,0 +1,55 @@
+CREATE DATABASE IF NOT EXISTS beauscent_db;
+USE beauscent_db;
+
+CREATE TABLE productos (
+  	id INT AUTO_INCREMENT PRIMARY KEY,
+  	nombre VARCHAR(100),
+    precio DECIMAL(10,2),
+  	stock INT,
+  	fotoProducto VARCHAR(255),
+    categoria ENUM('Perfume', 'Skincare'),
+  	estado BOOLEAN DEFAULT 1
+);
+
+INSERT INTO productos (nombre, precio, stock, fotoProducto, categoria, estado) VALUES
+    ('Eau de Lumière 50 ml', 79.90, 30, '/img/productos/1.png', 'Perfume', 1),
+    ('Noir Absolu 100 ml', 119.00, 20, '/img/productos/2.png', 'Perfume', 1),
+    ('Brisa Floral 30 ml', 39.50, 60, '/img/productos/3.png', 'Perfume', 1),
+    ('Serum Revitalizante 30 ml', 45.25, 40, '/img/productos/5.png', 'Skincare', 1),
+    ('Crema HydraGlow 50 ml', 34.99, 55, '/img/productos/6.png', 'Skincare', 1);
+
+CREATE TABLE usuario(
+	  id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR (100),
+    correo VARCHAR (100),
+    passw VARCHAR (400)
+
+);
+
+INSERT INTO usuario (usuario, correo, passw) VALUES
+  ('lulu', ' lu@lu.com', '$2b$10$xQu62uSTQFtnR69y1xGfbOLsJLXo7L.446XLSujX9ySq3bMmA1TvC'),
+  ('aaaa', 'us@us.com', '$2b$10$.f8e/Cd/maH3iXq12m1iBe36.DQEZlO5DGHe5.af56AtqJO79vJeS'),
+  ('bbb',	'bbb@b.com',	'$2b$10$3l2ZBVcsAl7bbjLZWdZrZe.1iOJCC5YPkPIfV1090G8DGYAs/ekRG'),
+  ('David',	'david@example.com', '$2b$10$D7ml0Vv/H.VNnjgK3ROj4uelGYV9If85047SJPJeJnD3uQ8MaSj5u'),
+  ('Alice',	'alice@example.com', '$2b$10$AD2FIHLMZH50IFWIltl6EuWKutVDj4LuX1V.5p24eVRRo9wDwX2oy'),
+  ('Eve',	'eve@example.com', '$2b$10$XeTJ.bRVBbgu1NXEgHT1G.VbwiZBkwNOIzgkaeCRqiLNpx9hyulpu');
+
+
+CREATE TABLE ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    producto_id INT,
+    cantidad INT,
+    fecha DATE,
+    FOREIGN KEY (producto_id) REFERENCES productos(id)
+);
+
+
+SELECT * FROM usuario;
+
+SELECT * FROM productos;
+
+SELECT * FROM ventas;
+
+show databases;
+
+show tables;

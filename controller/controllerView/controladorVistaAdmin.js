@@ -15,12 +15,15 @@ exports.renderAlta = (req, res) => {
 exports.renderCreate = (req, res)=>{
     res.render('createUser');
 };
-exports.renderFormEditar = (req, res) => {
+exports.renderFormEditar = async(req, res) => {
     const id = req.params.id;
-    Producto.getById(id,(err, resultado)=>{
-        if (err) return res.status(500).send('Error al obtener producto');
-        const producto = resultado[0];
+    try{
+        const producto = await Producto.getById(id);
+        console.log(producto[0].nombre)
         res.render('formABMproductos', { modo: 'modificar', producto });
-    })
+
+    }catch(err){
+        throw err;
+    }
 };
 
