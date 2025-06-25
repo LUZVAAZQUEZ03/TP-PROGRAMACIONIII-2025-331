@@ -19,16 +19,24 @@
         <div class="ingresar">
             <% if (modo === "alta") { %>
                 <h1>Alta producto</h1>
-                <form method="POST" action="/admin/nuevoProducto">
+                <form method="POST" action="/admin/nuevoProducto" enctype="multipart/form-data">
             <% } %>
             <% if (modo === "modificar") { %>
                 <h1>Modificar Producto</h1>
-                <form method="POST" action="/admin/producto/modificar/<%= producto[0].id %>" >
+                <form method="POST" action="/admin/producto/modificar/<%= producto[0].id %>" enctype="multipart/form-data" >
+                    <!-- Campo oculto para conservar la imagen actual si no se sube una nueva -->
+                    <input type="hidden" name="fotoActual" value="<%= producto[0].fotoProducto %>">
             <% } %>
                 <input class="input-text" type="text" name="nombre"  id="nombre" required placeholder="Ingrese Nombre" value="<%= producto && producto[0] ? producto[0].nombre : '' %>"><br>
                 <input class="input-text" type="text" name="precio" min="0" id="precio" required placeholder="Ingrese Precio"pattern="\d+(.\d{1,2})?" value="<%= producto && producto[0] ? producto[0].precio.replace(',', '.') : '' %>"><br>
                 <input class="input-text" type="number" name="stock" min="0" id="stock" required placeholder="Ingrese Cantidad"value="<%= producto && producto[0] ? producto[0].stock : '' %>"><br>
-                <input class="input-text" type="file" name="foto" id="foto" required placeholder="Ingrese foto del nuevo producto"value="<%= producto && producto[0] ? producto[0].fotoProducto : '' %>"><br>
+                <input
+                class="input-text"
+                type="file"
+                name="foto"
+                id="foto"
+                ><br>
+
                 <select class="input-text" name="category" id="category">
                     <option value="none"
                         <% if (!producto || !producto[0] || !producto[0].categoria) { %>

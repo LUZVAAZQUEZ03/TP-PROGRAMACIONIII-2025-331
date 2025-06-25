@@ -26,15 +26,18 @@ exports.getActive = async (req, res) => {
 };
 
 exports.createProd = async (req, res) => {
-    const { nombre, precio, stock, foto: fotoProducto, category: categoria } = req.body;
     
-    console.log(nombre, precio, stock, fotoProducto, categoria)
-    // fotoProducto = req.body.foto || '';
-
+    const { nombre, precio, stock,category: categoria } = req.body;
+    
+    let fotoProducto;
+    console.log('req.file; ', req.file)
     if (req.file) {
         fotoProducto = '/productos/' + req.file.filename;
+    }else {
+        console.log('no hay imagen:');   
     }
-
+    
+    console.log(nombre, precio, stock, fotoProducto, categoria)
     try {
         await validateProduct.validate(nombre, precio,stock, fotoProducto, categoria);
         const estado = 1;
@@ -50,13 +53,19 @@ exports.createProd = async (req, res) => {
 
 exports.update = async (req, res) => {
     const id = req.params.id;
-
-    const { nombre,precio,stock, foto: fotoProducto, category: categoria } = req.body;
-    console.log(nombre,precio,stock,fotoProducto,categoria)
+    
+    let fotoProducto = req.body.fotoActual;
 
     if (req.file) {
+        console.log('req.file; ', req.file)
+        console.log('\nNueva imagen:');
         fotoProducto = '/productos/' + req.file.filename;
+    } else {
+        console.log('Se mantiene imagen:');   
     }
+    const { nombre,precio,stock,category: categoria } = req.body;
+    
+    console.log(nombre,precio,stock,fotoProducto,categoria)
     try {
     
         await validateProduct.validate(nombre,precio,stock,fotoProducto,categoria );
@@ -121,33 +130,21 @@ exports.createUser = async (req, res) =>{
 exports.ingresar = async(req, res) => {
     const { user, passw1 } = req.body;
     console.log( user, passw1)
+    try {
+        const userDB = await Producto.getUser(user);
+        console.log('useeeerdb ', userDB[0].passw)
 
-     /* Producto.getUser(user, async (err, respuesta) => {        
-        if (err) {
-            return res.redirect('/admin/?error=server');
-        }
-        
-        if (respuesta.length === 0) {
-            return res.redirect('/admin/?error=user_not_found');
-        }
-        
-        const userDB = respuesta[0];*/
-        
-        try {
-            const userDB = await Producto.getUser(user);
-            console.log('useeeerdb ', userDB[0].passw)
+        const match = await bcrypt.compare(passw1, userDB[0].passw); 
+        console.log('matchhh' + match)
 
-            const match = await bcrypt.compare(passw1, userDB[0].passw); 
-            console.log('matchhh' + match)
-
-            if (match) {
-                // Contraseña válida
-                res.redirect('/admin/dashboard');
-            } else {
-                // Contraseña incorrecta
-                return res.redirect('/admin/?error=incorrect_password')
-            }
-        } catch (error) {
-            return res.redirect('/admin/?error=password_check_failed');
+        if (match) {
+            // Contraseña válida
+            res.redirect('/admin/dashboard');
+        } else {
+            // Contraseña incorrecta
+            return res.redirect('/admin/?error=incorrect_password')
         }
+    } catch (error) {
+        return res.redirect('/admin/?error=password_check_failed');
+    }
 };
