@@ -3,13 +3,14 @@ const router = express.Router();
 const controlador = require('../controller/controllerApis/contollerApiAdmin.js');
 const vistaAdmin = require('../controller/controllerView/controladorVistaAdmin');
 const upload = require('../servicios/multer.js');
+const verificarToken = require('../servicios/jwt.js');
 const { render } = require('ejs');
 
 // Ruta al login
 router.get('/', vistaAdmin.renderLog);
 
 // Ruta al dashboard
-router.get('/dashboard', controlador.getAll);
+router.get('/dashboard',verificarToken, controlador.getAll);
 
 // Ruta para formulario de alta
 router.get('/formABMproductos', vistaAdmin.renderAlta);
