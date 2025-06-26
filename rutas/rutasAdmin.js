@@ -21,6 +21,8 @@ router.get('/createUser', vistaAdmin.renderCreate);
 //
 router.get('/formABMproductos/:id', vistaAdmin.renderFormEditar);
 
+router.get('/logout', controlador.logOut)
+
 //rutas post
 router.post('/nuevoProducto', upload.single('foto'), controlador.createProd) //crea productos
 

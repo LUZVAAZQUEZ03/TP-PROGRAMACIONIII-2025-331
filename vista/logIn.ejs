@@ -25,6 +25,12 @@
                 <p>Contraseña incorrecta</p>
             <% } else if (locals.error === 'password_check_failed') { %>
                 <p>Error al verificar la contraseña</p>
+            <% } else if (locals.error === 'invalid_token') { %>
+                <p">Token inválido. Por favor, iniciá sesión de nuevo.</p>
+            <% } else if (locals.error === 'token_expired') { %>
+                <p>Tu sesión expiró. Iniciá sesión de nuevo.</p>
+            <% } else if (locals.error === 'token_missing') { %>
+                <p>No se encontro token.</p>
             <% } %>
             <form method="POST" action="/admin/dashboard" >
                 <h2>Inicio de sesion:</h2>

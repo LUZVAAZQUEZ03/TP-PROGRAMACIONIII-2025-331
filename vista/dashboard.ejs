@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <%- include('partials/head') %>
+<script>
+    setTimeout(() => {
+        alert("Sesion expirada!!");
+        window.location.href = "/admin/logout"; 
+    }, 15 * 60 * 1000 ); //900000
+</script>
 <body>
     <header >
         <div class="contenedor header-productos">
@@ -11,7 +17,7 @@
                 <p>Torales Sasha Micaela, Vázquez Luz</p>
             </div>
             <nav class="navegacion">
-                <a href="/admin/">Salir</a>
+                <a href="/admin/logout">Salir</a>
             </nav>
         </div>
     </header> 

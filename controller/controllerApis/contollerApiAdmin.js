@@ -141,7 +141,7 @@ exports.ingresar = async(req, res) => {
         const token = jwt.sign(
             {id: userDB[0].id, user: userDB[0].usuario},
             process.env.TOKEN_JWT,
-            { expiresIn: '10s' }
+            { expiresIn: '15m' }
         )
 
         if (match) {
@@ -156,3 +156,9 @@ exports.ingresar = async(req, res) => {
         return res.redirect('/admin/?error=password_check_failed');
     }
 };
+
+exports.logOut = async(req, res)=>{
+    console.log('sesión finalizada ')
+    res.clearCookie('token');
+    res.redirect('/admin/');
+}
