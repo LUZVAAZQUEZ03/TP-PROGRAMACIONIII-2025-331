@@ -11,7 +11,8 @@
     "multer": "^2.0.1",
     "mysql2": "^3.14.1",
     "nodemon": "^3.1.10",
-    "parser": "^0.1.4"
+    "parser": "^0.1.4",
+    "sequelize": "^6.37.7"
   },
   "name": "tp_progra3",
   "version": "1.0.0",

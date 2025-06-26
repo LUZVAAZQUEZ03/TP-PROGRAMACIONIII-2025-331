@@ -2,3 +2,4 @@
 *.txt
 test.js
 qry.sql
+query_sequelize.js

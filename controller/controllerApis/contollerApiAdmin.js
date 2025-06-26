@@ -3,6 +3,7 @@ const validateProduct = require('../../model/validacionesProducto');
 const validateUser = require('../../model/validacionesCuentas'); 
 const { hash } = require('bcrypt');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 exports.getPaginacion = async (req, res) => {
     const page = parseInt(req.query.page) || 1; // Obtiene el número de página de la consulta, o usa 1 por defecto
@@ -158,9 +159,16 @@ exports.ingresar = async(req, res) => {
 
         const match = await bcrypt.compare(passw1, userDB[0].passw); 
         console.log('matchhh' + match)
+        
+        const token = jwt.sign(
+            {id: userDB[0].id, user: userDB[0].usuario},
+            process.env.TOKEN_JWT,
+            { expiresIn: '10s' }
+        )
 
         if (match) {
             // Contraseña válida
+            res.cookie('token', token, { httpOnly: true });
             res.redirect('/admin/dashboard');
         } else {
             // Contraseña incorrecta
