@@ -2,7 +2,26 @@ const conexion = require('./db_conect');
 const {executeQuery }= require('./db_conect');
 
 module.exports = {
-
+    async getPaginacion(page, limit){//recibo la pagina que quiero y el limite de productos por pagina
+        const offset = (Number(page) - 1) * Number(limit);
+        try { 
+            const queryPerfum = `SELECT * FROM productos where CATEGORIA = 'Perfume' AND ESTADO = 1 LIMIT ${limit} OFFSET ${offset}`;
+            const querySkincare = `SELECT * FROM productos where CATEGORIA = 'Skincare' AND ESTADO = 1 LIMIT ${limit} OFFSET ${offset}`;
+            console.log("PAGINACION:", queryPerfum, querySkincare);
+            const perfume = await executeQuery(queryPerfum, [1, offset]);
+            const skincare = await executeQuery(querySkincare, [1, offset]);
+            
+            const productosCombinados = [...perfume, ...skincare];
+            return productosCombinados;
+        } catch (error) {
+            throw error;
+        }
+    },
+    async countActivos() {
+        const query = 'SELECT COUNT(*) AS total FROM productos WHERE estado = 1';
+        const result = await executeQuery(query);
+        return result[0].total;
+    },
     async getAll() {
         const query = `SELECT * FROM productos`;
 
