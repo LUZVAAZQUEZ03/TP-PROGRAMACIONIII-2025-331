@@ -6,10 +6,10 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config(); //npm install dotenv para utilizar el env y no tener puerto publico
 
 
-const rutasAdmin = require("./rutas/rutasAdmin.js")
+const rutasAdmin = require("./rutas/rutasAdmin.js");
 const rutasCliente = require("./rutas/rutasCliente.js");//exporto las rutas de los htmsls de cliente
-const rutasProductos = require("./rutas/rutasApi.js")
-
+const rutasProductos = require("./rutas/rutasApi.js");
+const rutasVentas = require("./rutas/rutasVentas.js");
 
 
 const port = process.env.PORT || 6000;
@@ -37,6 +37,7 @@ const configApi = (app) =>{
     app.use('/admin', rutasAdmin); //cargo todas las vistas del admin con /admin
     app.use('/cliente', rutasCliente); //activo las rutas de los clientes con /cliente
     app.use('/api/productos', rutasProductos); //seteo que todas las apis inicien con /api/productos
+    app.use('/api/ventas', rutasVentas); //seteo que todas las apis inicien con /api/ventas
 
 
     return;

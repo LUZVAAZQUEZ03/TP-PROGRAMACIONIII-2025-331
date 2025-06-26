@@ -29,7 +29,10 @@ class VistaCarrito {
 
         productosCarrito.forEach((producto, index) => {
             const item = this.crearItemCarrito(producto, index);
-            this.contenedorItems.appendChild(item);
+            if (item != undefined){
+                this.contenedorItems.appendChild(item);
+            }
+
         });
 
         this.actualizarLocalStorage();
