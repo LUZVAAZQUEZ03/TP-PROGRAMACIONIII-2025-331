@@ -1,11 +1,15 @@
 class VistaProductos {
     productos;
+    btnSiguiente;
+    btnAnterior;
     constructor() {
         this.productos = {
             contenedorPerfumes: this.$("perfume"),
             contenedorSkincare: this.$("skincare"),
             seccionCategorias: this.$("categories"),
         };
+        this.btnSiguiente = this.$("siguiente");
+        this.btnAnterior = this.$("anterior");
     }
     $(id) {
         return document.getElementById(id);

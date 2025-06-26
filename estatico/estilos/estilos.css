@@ -208,6 +208,12 @@ a{
     padding: 0.5rem 1rem;   
     margin: 0 auto; 
 }
+.botones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
 .navegacion{
     margin-top: 5rem;
 }

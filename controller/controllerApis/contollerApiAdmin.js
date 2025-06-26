@@ -4,7 +4,29 @@ const validateUser = require('../../model/validacionesCuentas');
 const { hash } = require('bcrypt');
 const bcrypt = require('bcrypt');
 
+exports.getPaginacion = async (req, res) => {
+    const page = parseInt(req.query.page) || 1; // Obtiene el número de página de la consulta, o usa 1 por defecto
+    const limit = 1;
 
+    try {
+        const data = await Producto.getPaginacion(page, limit); 
+        res.json(data); // Devuelve los productos paginados como JSON
+        console.log("PROBANDO "+data);
+    } catch (error) {
+        console.error('ERROR EN LA PAGINACIÓN:', error); 
+        res.status(500).send('Error al obtener productos paginados');
+    }
+}
+exports.countActivos = async (req, res) => {
+    try {
+        const totalActivos = await Producto.countActivos(); 
+        res.json({ totalActivos }); // Devuelve el total de productos activos como JSON
+        console.log("Total de productos activos: " + totalActivos);
+    } catch (error) {
+        console.error('ERROR AL CONTAR PRODUCTOS ACTIVOS:', error); 
+        res.status(500).send('Error al contar productos activos');
+    }
+}
 exports.getAll = async(req, res) => {
     try {
         const data = await Producto.getAll(); 
