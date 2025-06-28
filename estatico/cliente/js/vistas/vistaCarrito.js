@@ -1,4 +1,5 @@
 class VistaCarrito {
+    Modal;
     constructor() {
         this.contenedorItems = this.$("carrito-container");
         this.botonContinuar = this.$("continuar-btn");
@@ -9,24 +10,32 @@ class VistaCarrito {
         this.valorTotal = this.$("valorTotal");
 
         this.productosAGuardar = [];
+        this.Modal ={
+            modal: this.$("modalConfirmacion"),
+            botonCerrar: this.$("btnCancelarCompra"),
+            botonConfirmar: this.$("btnConfirmarCompra")
+        }
     }
 
     $(id) {
         return document.getElementById(id);
     }
-
     $all(selector) {
         return document.querySelectorAll(selector);
     }
-
+    mostrarModalConfirmacion() {
+        this.Modal.modal.style.display = "flex";
+    }
+    ocultarModalConfirmacion() {
+        this.Modal.modal.style.display = "none";
+    }
     mostrarProductosCarrito(productosCarrito) {
+        this.productosAGuardar = [];
         this.resetearVista();
-
         if (productosCarrito.length === 0) {
             this.mostrarCarritoVacio();
             return;
         }
-
         productosCarrito.forEach((producto, index) => {
             const item = this.crearItemCarrito(producto, index);
             if (item != undefined){
@@ -50,9 +59,12 @@ class VistaCarrito {
     }
 
     crearItemCarrito(producto, index) {
+        if (producto.nombre === undefined && producto.precio === undefined && producto.fotoProducto === undefined) {
+            console.error("Producto incompleto:", producto);
+            return undefined;} // Retorna undefined si el producto no tiene los campos necesarios}
         const item = document.createElement("div");
         item.className = "carrito-item";
-
+        console.log("Producto en crearItemCarrito:", producto);
         item.innerHTML = `
             <img src="${producto.fotoProducto}" alt="${producto.nombre}" class="item__imagen" />
             <div class="item__detalle">

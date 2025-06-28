@@ -26,8 +26,7 @@ const configApi = (app) =>{
         }
         next();
     });
-    app.use(cookieParser());
-    
+    app.use(cookieParser());   
     //sirvo estatico como estatico para poder iniciaer con el index
     app.use(express.static(path.join(__dirname, 'estatico')));
     app.use(express.static('public'));
@@ -38,7 +37,6 @@ const configApi = (app) =>{
     app.use('/cliente', rutasCliente); //activo las rutas de los clientes con /cliente
     app.use('/api/productos', rutasProductos); //seteo que todas las apis inicien con /api/productos
     app.use('/api/ventas', rutasVentas); //seteo que todas las apis inicien con /api/ventas
-
 
     return;
 } 

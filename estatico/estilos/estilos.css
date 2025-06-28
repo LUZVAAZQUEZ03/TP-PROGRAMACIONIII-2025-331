@@ -200,6 +200,22 @@ a{
     margin: 1.5rem auto 0 auto;
     object-fit: contain;       
 }
+.modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--backRoundDarker);
+    padding: 2rem;
+    border-radius: 1rem;
+    text-align: center;
+}
 .producto p{
     background-color: var(--hoverActive);
     border-radius: 0.5rem;

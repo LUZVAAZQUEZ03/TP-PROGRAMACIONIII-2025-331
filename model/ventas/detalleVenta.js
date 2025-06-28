@@ -1,4 +1,4 @@
-const sequelize = require("../servicios/sequelize");
+const sequelize = require("../../servicios/sequelize");
 const { DataTypes } = require("sequelize");
 
 const DetalleVenta = sequelize.define("DetalleVenta", {
@@ -23,4 +23,4 @@ const DetalleVenta = sequelize.define("DetalleVenta", {
     timestamps: false
 });
 
-module.exports = { DetalleVenta };
+module.exports =DetalleVenta;

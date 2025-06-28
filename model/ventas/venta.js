@@ -1,4 +1,4 @@
-const sequelize = require("../servicios/sequelize.js"); // conexión
+const sequelize = require("../../servicios/sequelize.js"); // conexión
 const { DataTypes } = require("sequelize"); 
 
 const Venta = sequelize.define("Venta", {
@@ -20,4 +20,4 @@ const Venta = sequelize.define("Venta", {
     });
 
 
-module.exports = { Venta };
+module.exports =Venta;

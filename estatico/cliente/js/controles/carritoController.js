@@ -2,7 +2,6 @@
 class ControlCarrito{
     Modelo;
     VistaCarrito;
-    productosCarrito = [];
     constructor(p_modelo,p_vista){
         this.Modelo=p_modelo;
         this.VistaCarrito=p_vista;      
@@ -24,9 +23,18 @@ class ControlCarrito{
             window.location.href = "productos.html";
         });
         this.VistaCarrito.botonFin.addEventListener("click", () => {
-            window.location.href = "ticket.html";
+            this.VistaCarrito.mostrarModalConfirmacion();
+            this.VistaCarrito.Modal.botonCerrar.addEventListener("click", () => {
+                this.VistaCarrito.ocultarModalConfirmacion();
+            });
+            this.VistaCarrito.Modal.botonConfirmar.addEventListener("click",()=>{
+                window.location.href = "ticket.html";
+                // agregar la lógica para procesar el pago o finalizar la compra.
+                this.VistaCarrito.ocultarModalConfirmacion();
+            })
         }); 
     }
+    
     obtenerProductosCarrito() {
         const productosCarrito = [];
         for (let i = 0; i < localStorage.length; i++) {
@@ -44,23 +52,24 @@ class ControlCarrito{
         return productosCarrito;
     }
     sacarDelCarrito(index,boton) {
-        const producto = this.productosCarrito[index];
+        const productosCarrito = this.obtenerProductosCarrito();
+        const producto = productosCarrito[index];
         localStorage.removeItem(`producto${producto.id}`);
-        this.productosCarrito.splice(index, 1); // Elimina el producto de la lista tmb
+        productosCarrito.splice(index, 1); // Elimina el producto de la lista tmb
         const itemElement = boton.closest(".carrito-item");//elimina solo ese item, asi no recraga todo el dom nuevamente.
         if (itemElement) itemElement.remove();
         alert(`Producto "${producto.nombre}" eliminado del carrito.`);
-        this.VistaCarrito.ac
+        this.VistaCarrito.resetearVista();
         this.VistaCarrito.mostrarProductosCarrito(this.obtenerProductosCarrito());
     }
 
     agregarCarrito(){
-        this.productosCarrito = this.obtenerProductosCarrito();
-        if (this.productosCarrito.length === 0) {
+        const productosCarrito = this.obtenerProductosCarrito();
+        if (productosCarrito.length === 0) {
             alert("El carrito está vacío.");
             return false;
         }   
-        this.VistaCarrito.mostrarProductosCarrito(this.productosCarrito);
+        this.VistaCarrito.mostrarProductosCarrito(productosCarrito);
         this.registrarBotonesQuitar();        
     }
 }
