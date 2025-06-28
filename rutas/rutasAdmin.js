@@ -18,29 +18,33 @@ router.get('/formABMproductos', vistaAdmin.renderAlta);
 // Ruta a crear user
 router.get('/createUser', vistaAdmin.renderCreate);
 
-//
+//ruta a formulario modificar
 router.get('/formABMproductos/:id', vistaAdmin.renderFormEditar);
 
+//ruta salir
 router.get('/logout', controlador.logOut)
 
 //rutas post
+//posteo nuevo producto
 router.post('/nuevoProducto', upload.single('foto'), controlador.createProd) //crea productos
 
+//posteo producto modificado
 router.post('/producto/modificar/:id', upload.single('foto'), controlador.update); //carag el form con el producto a editar 
 
+//con editado posteo y reenvio al dashboard si todo esta correcto
 router.post('/editado', vistaAdmin.renderDashboard) //una vez editado
 
+//descativa producto por id
 router.post('/desactivar/:id', controlador.desactivar);
 
+//activa producto por id
 router.post('/activar/:id', controlador.activar);
 
+//posteo y envio desde inicio de sesion al dashboard
 router.post('/dashboard', controlador.ingresar);
 
+//posteo y envio a "/" para que inicie sesion
 router.post('/', controlador.createUser)
 
-
-//render.post('/createUser', )
-
-//render.post('/log', )
 
 module.exports = router; 

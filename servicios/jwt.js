@@ -5,7 +5,7 @@ const verificarToken = (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-        console.log('no ha tokeeeeeeeen');
+        console.log('no hay tokeeeeeeeen');
         return res.redirect('/admin/?error=token_missing');
     }
 
