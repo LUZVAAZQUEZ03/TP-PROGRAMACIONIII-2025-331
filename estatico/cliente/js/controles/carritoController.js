@@ -27,14 +27,34 @@ class ControlCarrito{
             this.VistaCarrito.Modal.botonCerrar.addEventListener("click", () => {
                 this.VistaCarrito.ocultarModalConfirmacion();
             });
-            this.VistaCarrito.Modal.botonConfirmar.addEventListener("click",()=>{
-                window.location.href = "ticket.html";
-                // agregar la lógica para procesar el pago o finalizar la compra.
+            this.VistaCarrito.Modal.botonConfirmar.addEventListener("click", async ()=>{
+                const productos = JSON.parse(localStorage.getItem("productosTicket"));
+                const cliente = localStorage.getItem("nombreUsuario");
+
+                const total = productos.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+                try {
+                    const res = await fetch("http://localhost:3000/api/ventas/crear", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            cliente,
+                            productos,
+                            total
+                        })
+                    });
+
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error);
+
+                    alert("¡Compra realizada con exito!");
+                    window.location.href = "ticket.html";
+                } catch (err) {
+                    alert("Error al realizar la compra: " + err.message);
+                }
                 this.VistaCarrito.ocultarModalConfirmacion();
             })
         }); 
     }
-    
     obtenerProductosCarrito() {
         const productosCarrito = [];
         for (let i = 0; i < localStorage.length; i++) {
