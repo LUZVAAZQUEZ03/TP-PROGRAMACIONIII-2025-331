@@ -72,7 +72,7 @@ class VistaCarrito {
                 <p class="item__precio">$${producto.precio}</p>
             </div>
             <div class="product-quantity">
-                <input class="input-text2" type="number" value="1" min="1" max="${producto.stock}" data-index="${index}">
+                <input class="input-text2" type="number" value="1" min="1" required value="1" max="${producto.stock}" data-index="${index}">
             </div>
             <p class="product-total" id="total-${index}">$${producto.precio}</p>
             <button class="boton removerBtn" data-idx="${index}">Quitar del carrito</button>
@@ -80,7 +80,9 @@ class VistaCarrito {
 
         const inputCantidad = item.querySelector('input[type="number"]');
         const totalProductElem = item.querySelector(`#total-${index}`);
-
+        if (!inputCantidad || !totalProductElem) {
+            localStorage.removeItem(`producto${producto.id}`);
+        }
         const productoConCantidad = {
             ...producto,
             cantidad: 1,
@@ -91,11 +93,24 @@ class VistaCarrito {
         inputCantidad.addEventListener("input", (e) =>
             this.manejarCambioCantidad(e, producto, index, totalProductElem)
         );
+        inputCantidad.addEventListener("blur", (e) => {
+            let cantidad = parseInt(e.target.value);
+            if (isNaN(cantidad) || cantidad < 1) {
+                cantidad = 1;
+                e.target.value = cantidad;
+                this.manejarCambioCantidad(e, producto, index, totalProductElem);
+            }
+        });
 
         return item;
     }
 
     manejarCambioCantidad(e, producto, index, totalProductElem) {
+        if (isNaN(cantidad) || cantidad < 1) {
+            cantidad = 1;
+            e.target.value = cantidad;
+        }
+
         let cantidad = parseInt(e.target.value);
         if (cantidad > producto.stock) {
             alert(`Solo hay ${producto.stock} unidades disponibles.`);
@@ -132,6 +147,7 @@ class VistaCarrito {
             this.valorTotal.textContent = `$${subtotal.toFixed(2)}`;
         }
     }
+    
 }
 
 export { VistaCarrito };

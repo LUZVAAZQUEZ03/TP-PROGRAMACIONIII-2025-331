@@ -29,9 +29,8 @@ exports.createTicket = async (req,res) =>{
         await browser.close();
         res.set({
             'Content-Type': 'application/pdf',
-            'Content-Disposition': 'attachment; filename=ticket.pdf'
+            'Content-Disposition': 'attachment; filename=ticketBeauscent.pdf'
         });
-        console.log(pdfBuffer+"HOLA ACA ESTA PDFBUFFER")
         res.send(pdfBuffer);
     }catch (error) {
         console.error('Error al iniciar Puppeteer:', error);
