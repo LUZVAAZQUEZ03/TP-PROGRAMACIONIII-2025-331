@@ -14,7 +14,6 @@ class ControlCarrito{
             const index = parseInt(boton.getAttribute("data-idx"));
             boton.addEventListener("click", () => {
                 this.sacarDelCarrito(index,boton);
-                this.VistaCarrito.mostrarProductosCarrito(this.obtenerProductosCarrito());
             });
         });
     }
@@ -81,6 +80,7 @@ class ControlCarrito{
         alert(`Producto "${producto.nombre}" eliminado del carrito.`);
         this.VistaCarrito.resetearVista();
         this.VistaCarrito.mostrarProductosCarrito(this.obtenerProductosCarrito());
+        this.registrarBotonesQuitar(); 
     }
 
     agregarCarrito(){
