@@ -36,6 +36,9 @@ exports.createVenta = async (req,res) => {
             }
 
             productoEnBD.stock -= p.cantidad;
+            if (productoEnBD.stock==0){
+                productoEnBD.estado = false; // Cambia el estado a false si el stock llega a 0
+            }
             await productoEnBD.save({ transaction });
         }
         await transaction .commit()

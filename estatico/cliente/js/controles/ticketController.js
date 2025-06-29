@@ -1,3 +1,4 @@
+
 class ControlTicket{
     VistaTicket;
     Modelo;
@@ -11,10 +12,10 @@ class ControlTicket{
         this.VistaTicket.mostrarTicket();
     }
     registrarBotonDescargarPDF(){
-        this.VistaTicket.contenedor.botonPdf.addEventListener("click", () => {
-            localStorage.clear();
-
-        window.location.href = "bienvenido.html";
+        this.VistaTicket.contenedor.botonPdf.addEventListener("click", (event) => {
+            this.VistaTicket.generarPDF();
+            alert("El ticket se ha descargado como PDF.");
+            event.preventDefault();
         });
     }
 }

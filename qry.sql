@@ -34,9 +34,18 @@ INSERT INTO usuario (usuario, correo, passw) VALUES
 
 CREATE TABLE ventas (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente VARCHAR(255),
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    total DECIMAL(10, 2)
+);
+CREATE TABLE detalles_venta (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    venta_id INT,
     producto_id INT,
     cantidad INT,
-    fecha DATE,
+    precio_unitario DECIMAL(10, 2),
+    subtotal DECIMAL(10, 2),
+    FOREIGN KEY (venta_id) REFERENCES ventas(id),
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
 

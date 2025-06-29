@@ -27,10 +27,18 @@ class ControlCarrito{
                 this.VistaCarrito.ocultarModalConfirmacion();
             });
             this.VistaCarrito.Modal.botonConfirmar.addEventListener("click", async ()=>{
-                const productos = JSON.parse(localStorage.getItem("productosTicket"));
+                const productos = JSON.parse(localStorage.getItem("productosTicket"))  || [];
+                if (!productos.length) {
+                    alert("El carrito está vacIo. No se puede realizar la compra.");
+                    return;
+                }
                 const cliente = localStorage.getItem("nombreUsuario");
-
                 const total = productos.reduce((acc, p) => acc + (p.precio * p.cantidad), 0);
+                if ( total === 0 || isNaN(total)) {
+                    alert("El carrito está vacío o contiene datos invalidos. No se puede realizar la compra.");
+                    return;
+                }
+
                 try {
                     const res = await fetch("http://localhost:3000/api/ventas/crear", {
                         method: "POST",
