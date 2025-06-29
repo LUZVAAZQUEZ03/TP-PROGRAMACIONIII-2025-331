@@ -24,7 +24,10 @@ class VistaTicket {
         // Datos cliente y fecha
         const nombreCliente = localStorage.getItem("nombreUsuario") || "Cliente";
         const fecha = new Date();
-        const fechaTexto = fecha.toISOString().split("T")[0];
+        const dia = String(fecha.getDate()).padStart(2, '0');
+        const mes = String(fecha.getMonth() + 1).padStart(2, '0');
+        const anio = fecha.getFullYear();
+        const fechaTexto = `${anio}-${mes}-${dia}`;
         const horaTexto = fecha.toTimeString().split(" ")[0].slice(0, 5);
 
         this.contenedor.header.innerHTML = `
