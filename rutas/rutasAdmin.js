@@ -4,6 +4,7 @@ const controlador = require('../controller/controllerApis/contollerApiAdmin.js')
 const vistaAdmin = require('../controller/controllerView/controladorVistaAdmin');
 const upload = require('../servicios/multer.js');
 const verificarToken = require('../servicios/jwt.js');
+
 const { render } = require('ejs');
 
 // Ruta al login
@@ -32,7 +33,7 @@ router.post('/nuevoProducto', upload.single('foto'), controlador.createProd) //c
 router.post('/producto/modificar/:id', upload.single('foto'), controlador.update); //carag el form con el producto a editar 
 
 //con editado posteo y reenvio al dashboard si todo esta correcto
-router.post('/editado', vistaAdmin.renderDashboard) //una vez editado
+router.put('/editado', vistaAdmin.renderDashboard) //una vez editado
 
 //descativa producto por id
 router.post('/desactivar/:id', controlador.desactivar);

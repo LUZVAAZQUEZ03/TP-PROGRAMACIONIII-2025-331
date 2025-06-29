@@ -11,13 +11,13 @@
     <header >
         <div class="contenedor header-productos">
             <div class="logo">
-                <img src="/img/beauscent.png" alt="">
+                <img src="/img/beauscent.png" alt="beauscent" onclick="location.href='/admin/dashboard'">
             </div>
             <div class="nombres">
                 <p>Torales Sasha Micaela, Vázquez Luz</p>
             </div>
             <nav class="navegacion">
-                <a href="/admin/logout">Salir</a>
+                <a href="/admin/logout"><i class="fa-solid fa-right-to-bracket" style="color: #b48191;"></i></a>
             </nav>
         </div>
     </header> 
@@ -41,12 +41,12 @@
                             <h3><%= p.precio %>$</h3>
                             
                                 <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
-                                <% if (p.activo ) { %>
-                                    <form action="/admin/desactivar/<%= p.id %>" method="post" ">
+                                <% if (p.estado ) { %>
+                                    <form action="/admin/desactivar/<%= p.id %>" method="post">
                                         <button type="submit" class="boton">Desactivar</button>
                                     </form>
                                 <% } else { %>
-                                    <form action="/admin/activar/<%= p.id %>" method="post" ">
+                                    <form action="/admin/activar/<%= p.id %>" method="post">
                                         <button type="submit" class="boton">Activar</button>
                                     </form>
                                 <% } %>
@@ -65,12 +65,12 @@
                     <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
                     <h3><%= p.precio %>$</h3>
                         <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
-                        <% if (p.activo ) { %>
+                        <% if (p.estado ) { %> <!-- mo era nada de la logica eera xq estaba en "activo" y no en estado-->
                             <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
                                 <button type="submit" class="boton">Desactivar</button>
                             </form>
                         <% } else { %>
-                            <form action="/admin/activar/<%= p.id %>" method="post" ;">
+                            <form action="/admin/activar/<%= p.id %>" method="post">
                                 <button type="submit" class="boton">Activar</button>
                             </form>
                         <% } %>

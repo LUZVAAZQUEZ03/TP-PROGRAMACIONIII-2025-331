@@ -32,11 +32,13 @@ const validateAdmin = {
         await this.validateUsername(userName);
         await this.validateMail(mail);
         await this.validatePass(passA,passB);
+        console.log("paso validacion")
     },
 
     async encriptar(pass) {
     try {
         const hash = await bcrypt.hash(pass, 10);
+        console.log(hash)
         return hash;
     } catch (err) {
         throw err;

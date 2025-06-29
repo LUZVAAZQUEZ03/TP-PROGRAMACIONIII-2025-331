@@ -61,6 +61,17 @@ input:checked + .slider::before {
     transform: translateX(28px);
 }
 
+/* boton autocpletar*/
+.accesoDirecto {
+    position: relative; /* importante */
+}
+
+#btn-superior {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
 /* Transición general del body */
 body {
     transition: background-color 0.6s ease, color 0.6s ease;
@@ -227,7 +238,7 @@ a{
     transition: background-color 0.3s ease;
 }
 .boton:hover {
-    background-color: #b48191;
+    background-color: rgb(180, 129, 145);
     box-shadow: 0 0 20px rgba(160, 108, 121, 0.7); /* Sombra suave del color del botón */
     transform: scale(0.98); /* Hace que el botón parezca presionado */
 }

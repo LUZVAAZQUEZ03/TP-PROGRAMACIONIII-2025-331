@@ -1,8 +1,9 @@
-const express = require('express')
+const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const multer = require('multer');
 const cookieParser = require('cookie-parser');
+// const override = require('method-override');
 require('dotenv').config(); //npm install dotenv para utilizar el env y no tener puerto publico
 
 
@@ -26,6 +27,7 @@ const configApi = (app) =>{
         }
         next();
     });
+    //app.use(override('_method'));  //mid para usar put desde ejs  
     app.use(cookieParser());   
     //sirvo estatico como estatico para poder iniciaer con el index
     app.use(express.static(path.join(__dirname, 'estatico')));

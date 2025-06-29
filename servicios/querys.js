@@ -17,11 +17,13 @@ module.exports = {
             throw error;
         }
     },
+
     async countActivos() {
         const query = 'SELECT COUNT(*) AS total FROM productos WHERE estado = 1';
         const result = await executeQuery(query);
         return result[0].total;
     },
+
     async getAll() {
         const query = `SELECT * FROM productos`;
 
@@ -32,7 +34,7 @@ module.exports = {
             throw error;
         }
     },
-    
+
     async getActive(){
         const query = 'SELECT * FROM productos WHERE estado = 1';
         try {
@@ -42,7 +44,7 @@ module.exports = {
             throw error;
         }
     },
-    
+
     async create(producto) {
         const query = 'INSERT INTO productos SET nombre = ?, precio = ?, stock = ?, fotoProducto = ?, categoria = ?, estado = ? ';
         const params = [producto.nombre, producto.precio, producto.stock, producto.fotoProducto, producto.categoria, producto.estado]
@@ -53,8 +55,7 @@ module.exports = {
             throw (error)
         }
     },
-    
-    
+
     async getById(id){
         const query = 'SELECT * FROM productos WHERE id = ?';
         try{
@@ -64,7 +65,7 @@ module.exports = {
             throw (error)
         }
     },
-    
+
     async updateById(id, producto) {
         // console.log("recibo en la qry -> " , producto.nombre)
         const query = 'UPDATE productos SET nombre = ?, precio = ?, stock = ?, fotoProducto = ?, categoria = ? WHERE id = ?' ;
@@ -78,7 +79,7 @@ module.exports = {
         }
     
     },
-    
+
     async drop(id) {
         const query = 'UPDATE productos SET estado = 0 WHERE id = ?';
         try{
@@ -88,7 +89,7 @@ module.exports = {
             throw (error)
         }
     },
-    
+
     async activate(id) {
         const query = 'UPDATE productos SET estado = 1 WHERE id = ?';
         try{
@@ -98,7 +99,7 @@ module.exports = {
             throw (error)
         }
     },
-    
+
     async getStatus(id ){
         const query = 'SELECT estado FROM productos WHERE id = ?';
         try{
@@ -108,10 +109,10 @@ module.exports = {
             throw (error)
         }
     },
-    
+
     async createUser(user){
         console.log(user)
-        const query = 'INSERT INTO usuario  SET usuario = ?, correo = ?, passw = ?';
+        const query = 'INSERT INTO usuario  (usuario , correo , passw ) VALUES (?, ?, ?)';
         const params = [user.usuario, user.correo, user.passw];
         try{
             const result = await executeQuery(query, params);
@@ -121,11 +122,11 @@ module.exports = {
             throw (error)
         }
     },
-    
-    async getUser(user){
-        const query = 'SELECT * FROM usuario WHERE usuario = ?';
-        console.log('usuarioooooo' + user)
-        const params = [user];
+
+    async getCorreo(mail){
+        const query = 'SELECT * FROM usuario WHERE correo = ?';
+        console.log('correo:  ' + mail)
+        const params = [mail];
         try{
             const result = await executeQuery(query, params);
             return result;

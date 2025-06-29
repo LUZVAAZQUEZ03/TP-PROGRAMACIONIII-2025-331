@@ -5,13 +5,14 @@
     <header >
         <div class="contenedor header-productos">
             <div class="logo">
-                <img src="/img/beauscent.png" alt="">
+                <img src="/img/beauscent.png" alt="beauscent" onclick="location.href='/admin/'">
             </div>
             <div class="nombres">
                 <p>Torales Sasha Micaela, Vázquez Luz</p>
             </div>
             <nav class="navegacion">
                 <a href="createUser">Crear Cuenta</a>
+                <a href="/cliente/bienvenido"><i class="fa-solid fa-user" style="color: #b48191;"></i></a>
             </nav>
         </div>
     </header>
@@ -32,17 +33,32 @@
             <% } else if (locals.error === 'token_missing') { %>
                 <p>No se encontro token.</p>
             <% } %>
+            <div class="accesoDirecto">
+                <button id="btn-superior" class="boton">Acceso directo</button>
+            </div>
             <form method="POST" action="/admin/dashboard" >
                 <h2>Inicio de sesion:</h2>
-                <input class="input-text" type="text" id="user" name="user" required placeholder="Nombre de usuario"><br>
+                <input class="input-text" type="email" id="mail" name="mail" required placeholder="Correo electrónico"><br>
                 <input class="input-text" type="password" id="passw1" name="passw1" required placeholder="Contraseña"><br>
-                <input class="chk" type="checkbox">
                 <button class="boton">Ingresar</button>
             </form>
+            <form action=""></form>
+            
         </div>
         <%- include('partials/btnTheme') %>
     </main>
     <%- include('partials/footer') %>
+    <script>
+        const btnAcceso = document.getElementById('btn-superior');
+        const mail = document.getElementById('mail');
+        const passw1 = document.getElementById('passw1');
 
+        btnAcceso.addEventListener('click', (e) =>{
+            e.preventDefault();
+            mail.value = "admin1@example.com";
+            passw1.value = "123456"
+            console.log('mail' + mail + '\ncontraseña' + passw1)
+        })
+    </script>
 </body>
 </html>

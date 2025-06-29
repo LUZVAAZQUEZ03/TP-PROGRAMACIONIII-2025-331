@@ -17,7 +17,8 @@ exports.getPaginacion = async (req, res) => {
         console.error('ERROR EN LA PAGINACIÓN:', error); 
         res.status(500).send('Error al obtener productos paginados');
     }
-}
+};
+
 exports.countActivos = async (req, res) => {
     try {
         const totalActivos = await Producto.countActivos(); 
@@ -27,7 +28,8 @@ exports.countActivos = async (req, res) => {
         console.error('ERROR AL CONTAR PRODUCTOS ACTIVOS:', error); 
         res.status(500).send('Error al contar productos activos');
     }
-}
+};
+
 exports.getAll = async(req, res) => {
     try {
         const data = await Producto.getAll(); 
@@ -114,7 +116,7 @@ exports.activar = async (req, res) => {
     }catch(error){
         throw (error)
     }
-}
+};
 
 exports.desactivar = async(req, res) => {
     const id = req.params.id;
@@ -130,14 +132,20 @@ exports.desactivar = async(req, res) => {
 
 exports.createUser = async (req, res) =>{
     const { user, mail,passA, passB } = req.body;
+    console.log(req.body)
+    console.log("iniciando crear")
+    
     console.log( user, mail,passA, passB);
-    try{
-        await validateUser.validate(user, mail,passA, passB);
+    try{ 
+        
+        console.log("TRY")
+        await validateUser.validate(user, mail, passA, passB);
 
         const hash = await validateUser.encriptar(passA);
 
-        const usuario = { usuario: user,correo: mail, passw: hash};
-        console.log(usuario)
+        const usuario = { usuario: user, correo: mail, passw: hash};
+        console.log(usuario, hash)
+        console.log("usuario", usuario)
 
         await Producto.createUser(usuario)
         //if (err) res.redirect('/admin/createUser/?error=server');;
@@ -151,17 +159,17 @@ exports.createUser = async (req, res) =>{
 };
 
 exports.ingresar = async(req, res) => {
-    const { user, passw1 } = req.body;
-    console.log( user, passw1)
+    const { mail, passw1 } = req.body;
+    console.log( mail, passw1)
     try {
-        const userDB = await Producto.getUser(user);
-        console.log('useeeerdb ', userDB[0].passw)
+        const userDB = await Producto.getCorreo(mail);
+        console.log('pass db: ', userDB[0].passw)
 
         const match = await bcrypt.compare(passw1, userDB[0].passw); 
-        console.log('matchhh' + match)
+        console.log('matchhh ->' + match)
         
         const token = jwt.sign(
-            {id: userDB[0].id, user: userDB[0].usuario},
+            {id: userDB[0].id, user: userDB[0].correo},
             process.env.TOKEN_JWT,
             { expiresIn: '15m' }
         )
@@ -183,4 +191,4 @@ exports.logOut = async(req, res)=>{
     console.log('sesión finalizada ')
     res.clearCookie('token');
     res.redirect('/admin/');
-}
+};
