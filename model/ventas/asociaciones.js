@@ -4,12 +4,12 @@ const sequelize = require("../../servicios/sequelize.js"); // conexión
 const { DataTypes } = require("sequelize");
 // Asociaciones
 Venta.hasMany(DetalleVenta, {
-    foreignKey: 'ventaId',
+    foreignKey: 'venta_id',
     as: 'detalles'
 });
 
 DetalleVenta.belongsTo(Venta, {
-    foreignKey: 'ventaId',
+    foreignKey: 'venta_id',
     as: 'venta'
 });
 

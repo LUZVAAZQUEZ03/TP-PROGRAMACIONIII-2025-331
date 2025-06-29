@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 
 const DetalleVenta = sequelize.define("DetalleVenta", {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    ventaId: {
+    venta_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
@@ -11,11 +11,11 @@ const DetalleVenta = sequelize.define("DetalleVenta", {
             key: 'id'
         }
     },
-    productoId: { type: DataTypes.INTEGER, allowNull: false },
+    producto_id: { type: DataTypes.INTEGER, allowNull: false },
 
     cantidad: { type: DataTypes.INTEGER, allowNull: false },
 
-    precioUnitario: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
+    precio_unitario: { type: DataTypes.DECIMAL(10, 2), allowNull: false },
     
     subtotal: { type: DataTypes.DECIMAL(10, 2), allowNull: false }
 }, {

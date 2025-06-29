@@ -12,7 +12,7 @@ exports.getPaginacion = async (req, res) => {
     try {
         const data = await Producto.getPaginacion(page, limit); 
         res.json(data); // Devuelve los productos paginados como JSON
-        console.log("PROBANDO "+data);
+        console.log("PROBANDO "+ data);
     } catch (error) {
         console.error('ERROR EN LA PAGINACIÓN:', error); 
         res.status(500).send('Error al obtener productos paginados');

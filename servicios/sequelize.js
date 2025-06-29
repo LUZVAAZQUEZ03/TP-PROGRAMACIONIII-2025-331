@@ -18,5 +18,5 @@ const sequelize = new Sequelize(
             idle: 10000 // Tiempo máximo en milisegundos que una conexión puede estar inactiva antes de ser liberada
         }
     }
-);
+); 
 module.exports = sequelize; 
