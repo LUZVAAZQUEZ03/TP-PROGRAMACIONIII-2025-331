@@ -19,7 +19,7 @@ class ControlCarrito{
     }
     registrarBotonesGenerles() {
         this.VistaCarrito.botonContinuar.addEventListener("click", () => {
-            window.location.href = "productos.html";
+            window.location.href = "/productos";
         });
         this.VistaCarrito.botonFin.addEventListener("click", () => {
             this.VistaCarrito.mostrarModalConfirmacion();
