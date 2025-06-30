@@ -5,6 +5,6 @@ const vistaCliente = require('../controller/controllerView/controladorVistaClien
 
 router.get('/', vistaCliente.renderBienvenidoCliente);
 router.get('/productos', vistaCliente.renderProductos);
-router.get('/carritoo', vistaCliente.renderCarritoCliente);
+router.get('/carrito', vistaCliente.renderCarritoCliente);
 router.get('/ticket', vistaCliente.renderTicket);
 module.exports = router;

@@ -54,7 +54,7 @@ class ControlCarrito{
                     if (!res.ok) throw new Error(data.error);
 
                     alert("¡Compra realizada con exito!");
-                    window.location.href = "ticket.html";
+                    window.location.href = "/ticket";
                 } catch (err) {
                     alert("Error al realizar la compra: " + err.message);
                 }

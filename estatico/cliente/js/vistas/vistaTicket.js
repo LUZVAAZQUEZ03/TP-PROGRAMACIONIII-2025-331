@@ -150,7 +150,7 @@ class VistaTicket {
             window.URL.revokeObjectURL(url);// libera la URL temporal
 
             localStorage.clear();
-            window.location.href = "bienvenido.html";
+            window.location.href = "/";
         })
         .catch(error => {
             console.error("Error al generar PDF:", error);
