@@ -7,8 +7,8 @@ exports.renderBienvenidoCliente = (req,res) =>{
     res.sendFile(path.join(__dirname, '../../estatico/cliente/bienvenido.html'));
 }
 exports.renderCarritoCliente = (req,res) =>{
-    res.sendFile(path.join(__dirname, '../../estatico/cliente/carrito.html'));
+    res.sendFile(path.join(__dirname, '/../estatico/cliente/carrito.html'));
 }
 exports.renderTicket = (req,res) =>{
-    res.sendFile(path.join(__dirname, '../../estatico/cliente/ticket.html' ));
+    res.sendFile(path.join(__dirname, '/../estatico/cliente/ticket.html' ));
 }

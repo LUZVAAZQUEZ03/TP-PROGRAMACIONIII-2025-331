@@ -15,7 +15,7 @@ class ControlBienvenido{
 
             localStorage.setItem("nombreUsuario", nombre.charAt(0).toUpperCase() + nombre.slice(1).toLowerCase());
             inputNombre.value = "";
-            window.location.href = "productos.html";
+            window.location.href = "./productos";
         });
 }
 

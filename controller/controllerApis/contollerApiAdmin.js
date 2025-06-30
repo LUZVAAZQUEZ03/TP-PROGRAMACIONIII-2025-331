@@ -185,9 +185,11 @@ exports.ingresar = async(req, res) => {
             res.redirect('/admin/dashboard');
         } else {
             // Contraseña incorrecta
+            console.log('Contraseña incorrecta');
             return res.redirect('/admin/?error=incorrect_password')
         }
     } catch (error) {
+        console.error('Error al iniciar sesión:', error);
         return res.redirect('/admin/?error=password_check_failed');
     }
 };

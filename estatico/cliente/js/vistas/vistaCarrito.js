@@ -83,7 +83,7 @@ class VistaCarrito {
                 <p class="item__precio">$${producto.precio}</p>
             </div>
             <div class="product-quantity">
-                <input class="input-text2" type="number" min="1" required value="1" max="${producto.stock}" data-index="${index}">
+                <input class="input-text2" type="number" min="1" required value="1" step="1" max="${producto.stock}" data-index="${index}">
             </div>
             <p class="product-total" id="total-${index}">$${producto.precio}</p>
             <button class="boton removerBtn boton-rojo" data-idx="${index}">Quitar del carrito</button>
@@ -112,7 +112,11 @@ class VistaCarrito {
                 this.manejarCambioCantidad(e, producto, index, totalProductElem);
             }
         });
-
+        inputCantidad.addEventListener("keypress", (e) => {//no deja poner punto y coma
+            if (e.key === "." || e.key === ",") {
+                e.preventDefault();
+            }
+        });
         return item;
     }
 
