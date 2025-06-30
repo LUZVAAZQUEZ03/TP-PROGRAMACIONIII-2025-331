@@ -19,7 +19,7 @@ INSERT INTO productos (nombre, precio, stock, fotoProducto, categoria, estado) V
     ('Crema HydraGlow 50 ml', 34.99, 55, '/productos/6.png', 'Skincare', 1);
 
 CREATE TABLE usuario(
-	  id INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR (100),
     correo VARCHAR (100),
     passw VARCHAR (400)

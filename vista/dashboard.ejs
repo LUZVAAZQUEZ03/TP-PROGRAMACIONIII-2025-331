@@ -30,6 +30,13 @@
     </section>
 
     <section class="categories" id="categories">
+        <div id="modalConfirmacion" class="modal-admin" style="display: none;">
+            <div class="modal-content-admin">
+                <p>Confirmar</p>
+                <button class="boton" id="confirmar">Sí, confirmar</button>
+                <button class="boton" id="cancelar">Cancelar</button>
+            </div>
+        </div>
         <div class="category">
             <h2>PERFUMES</h2>
             <div class="box pink" id="perfume">
@@ -42,12 +49,12 @@
                             
                                 <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
                                 <% if (p.estado ) { %>
-                                    <form action="/admin/desactivar/<%= p.id %>" method="post">
-                                        <button type="submit" class="boton">Desactivar</button>
+                                    <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
+                                        <button type="button" class="boton boton-confirmar">Desactivar</button>
                                     </form>
                                 <% } else { %>
-                                    <form action="/admin/activar/<%= p.id %>" method="post">
-                                        <button type="submit" class="boton">Activar</button>
+                                    <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                                        <button type="button" class="boton boton-confirmar">Activar</button>
                                     </form>
                                 <% } %>
                             
@@ -65,13 +72,13 @@
                     <img class="imagen" src="<%= p.fotoProducto %>" alt="<%= p.nombre %>">
                     <h3><%= p.precio %>$</h3>
                         <button onclick="location.href='/admin/formABMproductos/<%= p.id %>'" class="boton">Editar</button>
-                        <% if (p.estado ) { %> <!-- mo era nada de la logica eera xq estaba en "activo" y no en estado-->
+                        <% if (p.estado ) { %> 
                             <form action="/admin/desactivar/<%= p.id %>" method="post" style="display:inline;">
-                                <button type="submit" class="boton">Desactivar</button>
+                                <button type="button" class="boton boton-confirmar">Desactivar</button>
                             </form>
                         <% } else { %>
-                            <form action="/admin/activar/<%= p.id %>" method="post">
-                                <button type="submit" class="boton">Activar</button>
+                            <form action="/admin/activar/<%= p.id %>" method="post" style="display:inline;">
+                                <button type="button" class="boton boton-confirmar">Activar</button>
                             </form>
                         <% } %>
                     <% }) %>
@@ -86,5 +93,42 @@
     <%- include('partials/btnTheme') %>
 </main>
     <%- include('partials/footer') %>
+
+    <script>
+    const modal = document.getElementById('modalConfirmacion');
+    const confirmar = document.getElementById('confirmar');
+    const cancelar = document.getElementById('cancelar');
+
+    let formularioSeleccionado = null;
+
+    document.querySelectorAll('.boton-confirmar').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            formularioSeleccionado = btn.closest('form');
+            modal.style.display = 'block';
+        });
+    });
+
+    confirmar.addEventListener('click', () => {
+        if (formularioSeleccionado) {
+            formularioSeleccionado.submit();
+        }
+        modal.style.display = 'none';
+        formularioSeleccionado = null;
+    });
+
+    cancelar.addEventListener('click', () => {
+        modal.style.display = 'none';
+        formularioSeleccionado = null;
+    });
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+            formularioSeleccionado = null;
+        }
+    };
+</script>
+
 </body>
 </html>

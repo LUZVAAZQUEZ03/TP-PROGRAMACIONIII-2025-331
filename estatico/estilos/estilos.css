@@ -272,6 +272,7 @@ a{
     margin: 1.5rem auto 0 auto;
     object-fit: contain;       
 }
+/*modal cliente*/
 .modal {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -286,6 +287,24 @@ a{
     background-color: var(--backRoundDarker);
     padding: 2rem;
     border-radius: 1rem;
+    text-align: center;
+}
+
+/*modal admin*/
+.modal-admin {
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content-admin {
+    background-color: var(--backRoundDarker);
+    margin: 15% auto;
+    padding: 20px;
+    width: 300px;
+    border-radius: 8px;
     text-align: center;
 }
 .producto p{
