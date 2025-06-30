@@ -22,7 +22,6 @@ class Producto {
     guardarProductoCarrito() {
         const clave = `producto${this.id}`; //aca traigo el id de mi serie
         localStorage.setItem(clave, this.toJsonString());  //local storage solo recive strings
-        alert(`Producto "${this.nombre}" agregado al carrito.`); 
     }
     toJsonString() {
         return JSON.stringify({
@@ -51,25 +50,16 @@ class Producto {
         const contenedor = document.createElement('div');
         contenedor.classList.add("tarjeta");
         contenedor.className = 'producto';
-    
+
         const nombreProducto = document.createElement('h2');
         nombreProducto.textContent = this.nombre;
-    
+
         const precioProducto = document.createElement('p');
         precioProducto.textContent = `Precio: ${this.precio}`;
-    
-    
+
         const img = document.createElement('img');
         img.src = this.fotoProducto;
         img.alt = `${this.nombre} imagen`;
-
-        const btnAgregarCarrito = document.createElement('button');
-        btnAgregarCarrito.classList.add("boton")
-
-        btnAgregarCarrito.textContent = "Agregar al Carrito";
-        btnAgregarCarrito.addEventListener('click', () => {
-            this.guardarProductoCarrito();
-        });
         img.addEventListener('click', () => {
             window.open(this.url, '_blank');
         });
@@ -77,9 +67,29 @@ class Producto {
         contenedor.appendChild(nombreProducto);
         contenedor.appendChild(precioProducto);
         contenedor.appendChild(img);
-        contenedor.appendChild(img);
-        contenedor.appendChild(btnAgregarCarrito);
-    
+        const enCarrito = localStorage.getItem(`producto${this.id}`) !== null;
+
+        if (enCarrito) {
+            const agregado = document.createElement("span");
+            agregado.innerHTML = "✔️ ¡Agregado!";
+            agregado.style.color = "green";
+            agregado.style.fontWeight = "bold";
+            contenedor.appendChild(agregado);
+        } else {
+            const btnAgregarCarrito = document.createElement('button');
+            btnAgregarCarrito.classList.add("boton");
+            btnAgregarCarrito.textContent = "Agregar al Carrito";
+            btnAgregarCarrito.addEventListener('click', () => {
+                this.guardarProductoCarrito();
+
+                const check = document.createElement("span");
+                check.innerHTML = "✔️ ¡Agregado!";
+                check.style.color = "green";
+                check.style.fontWeight = "bold";
+                btnAgregarCarrito.replaceWith(check);
+            });
+            contenedor.appendChild(btnAgregarCarrito);
+        }
         return contenedor;
     }
 }

@@ -28,16 +28,27 @@
     <main>
         <div class="container" id="carrito-container">
             <h2>Carrito de compras</h2>
+
         </div>
+        
         <div class="total-general">
                 <p>Total:</p>
                 <p id="valorTotal">$0.00</p>
             </div>
+
         <div class="acciones_carrito">
                 <button class="boton" id="finalizar-btn">Finalizar</button>
                 <button class="boton" id="continuar-btn">Continuar comprando</button>
+                <button id="vaciar-carrito-btn" class="boton boton-rojo">Vaciar Carrito</button>
             </div>
     </main>
+        <div id="modalVaciarCarrito" class="modal" style="display: none;">
+        <div class="modal-content">
+            <p>¿Estás seguro de que querés vaciar todo el carrito?</p>
+            <button id="btnConfirmarVaciado" class="boton boton-rojo">Sí, vaciar</button>
+            <button id="btnCancelarVaciado" class="boton">Cancelar</button>
+        </div>
+    </div>
     <div id="modalConfirmacion" class="modal" style="display: none;">
     <div class="modal-content">
         <p>Confirmar compra</p>

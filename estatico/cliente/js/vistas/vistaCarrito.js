@@ -8,13 +8,18 @@ class VistaCarrito {
         this.contenedorSubtotal = this.$all(".subtotal");
         this.valorSubtotal = this.$("valorSubtotal");
         this.valorTotal = this.$("valorTotal");
-
+        this.botonVaciarCarrito = this.$("vaciar-carrito-btn");
         this.productosAGuardar = [];
         this.Modal ={
             modal: this.$("modalConfirmacion"),
             botonCerrar: this.$("btnCancelarCompra"),
             botonConfirmar: this.$("btnConfirmarCompra")
         }
+        this.ModalVaciar = {
+            modal: this.$("modalVaciarCarrito"),
+            botonConfirmarV: this.$("btnConfirmarVaciado"),
+            botonCancelar: this.$("btnCancelarVaciado"),
+            };
     }
 
     $(id) {
@@ -28,6 +33,12 @@ class VistaCarrito {
     }
     ocultarModalConfirmacion() {
         this.Modal.modal.style.display = "none";
+    }
+    mostrarModalVaciar() {
+        this.ModalVaciar.modal.style.display = "flex";
+    }
+    ocultarModalVaciar() {
+        this.ModalVaciar.modal.style.display = "none";
     }
     mostrarProductosCarrito(productosCarrito) {
         this.productosAGuardar = [];
@@ -72,10 +83,10 @@ class VistaCarrito {
                 <p class="item__precio">$${producto.precio}</p>
             </div>
             <div class="product-quantity">
-                <input class="input-text2" type="number" value="1" min="1" required value="1" max="${producto.stock}" data-index="${index}">
+                <input class="input-text2" type="number" min="1" required value="1" max="${producto.stock}" data-index="${index}">
             </div>
             <p class="product-total" id="total-${index}">$${producto.precio}</p>
-            <button class="boton removerBtn" data-idx="${index}">Quitar del carrito</button>
+            <button class="boton removerBtn boton-rojo" data-idx="${index}">Quitar del carrito</button>
         `;
 
         const inputCantidad = item.querySelector('input[type="number"]');
@@ -106,12 +117,8 @@ class VistaCarrito {
     }
 
     manejarCambioCantidad(e, producto, index, totalProductElem) {
-        if (isNaN(cantidad) || cantidad < 1) {
-            cantidad = 1;
-            e.target.value = cantidad;
-        }
-
         let cantidad = parseInt(e.target.value);
+        
         if (cantidad > producto.stock) {
             alert(`Solo hay ${producto.stock} unidades disponibles.`);
             cantidad = producto.stock;

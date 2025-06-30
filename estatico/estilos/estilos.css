@@ -14,6 +14,7 @@
     --backround:#A88A9B;
     --hoverActive: #C1A1B3;
     --borderColor: #3E3E3E;
+    --colortBtnRojo: #79397c;
 }
 
 body.light-mode {
@@ -230,7 +231,7 @@ a{
     margin-top: 1rem;
     padding: 1rem;
     background-color: var(--btn); /* Botón malva */
-    color: white;
+    color: var(--mainTxtColor);
     border: none;
     border-radius: .5rem;
     font-size: 1.3rem;
@@ -241,6 +242,9 @@ a{
     background-color: rgb(180, 129, 145);
     box-shadow: 0 0 20px rgba(160, 108, 121, 0.7); /* Sombra suave del color del botón */
     transform: scale(0.98); /* Hace que el botón parezca presionado */
+}
+.boton-rojo:hover {
+  background-color: var(--colortBtnRojo); /* Más oscuro */
 }
 @media (max-width: 468px) {
     .boton{

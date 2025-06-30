@@ -17,13 +17,14 @@ exports.createTicket = async (req,res) =>{
         const page = await browser.newPage();
         await page.setContent(dataTicket, { waitUntil: 'networkidle0' });
         const pdfBuffer = await page.pdf({
-            format: 'A5',
+            format: 'A4',
             printBackground: true,
+            landscape: true,
             margin: {
-                top: '20px',
-                right: '20px',
-                bottom: '20px',
-                left: '20px'
+                top: '0px',
+                right: '0px',
+                bottom: '0px',
+                left: '0px',
             }
         });
         await browser.close();
