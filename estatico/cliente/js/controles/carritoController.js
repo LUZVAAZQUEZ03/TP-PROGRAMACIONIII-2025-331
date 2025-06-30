@@ -61,6 +61,26 @@ class ControlCarrito{
                 this.VistaCarrito.ocultarModalConfirmacion();
             })
         }); 
+        this.VistaCarrito.botonVaciarCarrito.addEventListener("click", () => {
+            this.VistaCarrito.mostrarModalVaciar();
+            });
+
+            this.VistaCarrito.ModalVaciar.botonCancelar.addEventListener("click", () => {
+            this.VistaCarrito.ocultarModalVaciar();
+            });
+
+            this.VistaCarrito.ModalVaciar.botonConfirmarV.addEventListener("click", () => {
+            Object.keys(localStorage).forEach((clave) => {
+                if (clave.startsWith("producto")) {
+                localStorage.removeItem(clave);
+                }
+            });
+            localStorage.removeItem("productosTicket");
+
+            this.VistaCarrito.resetearVista();
+            this.VistaCarrito.mostrarCarritoVacio();
+            this.VistaCarrito.ocultarModalVaciar();
+            });
     }
     obtenerProductosCarrito() {
         const productosCarrito = [];
