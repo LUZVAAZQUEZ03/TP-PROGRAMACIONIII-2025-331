@@ -37,14 +37,14 @@ class VistaTicket {
     }
     generarHTMLTicket(datos) {
         const { nombreCliente, fechaTexto, horaTexto, items, total } = datos;
-
         const cabecera = `
-            <div id="ticket-header">
-                <h2>Ticket de Compra</h2>
-                <p><strong>Fecha:</strong> ${fechaTexto}</p>
-                <p><strong>Hora:</strong> ${horaTexto}</p>
-                <h1>Gracias por tu compra, ${nombreCliente}</h1>
-            </div>`;
+                <div id="ticket-header">
+                    <h2>Ticket de Compra</h2>
+                    <p><strong>Fecha:</strong> ${fechaTexto}</p>
+                    <p><strong>Hora:</strong> ${horaTexto}</p>
+                    <h1>Gracias por tu compra, ${nombreCliente}</h1>
+            </div>    
+            `;
 
         const detalle = `
             <div id="ticket-info">
@@ -100,16 +100,33 @@ class VistaTicket {
                 <head>
                     <meta charset="utf-8">
                     <link rel="stylesheet" href="http://localhost:3000/estilos/estilos.css">
+                    <style>
+                        html, body {
+                            margin: 0;
+                            padding: 0;
+                            background-color: #2F2F2F;
+                            height: 100%;
+                            width: 100%;
+                        }
+
+                        .contenedor-pdf {
+                            padding: 20px; /* este es el espacio interno */
+                            color: white;
+                            font-family: sans-serif;
+                        }
+                    </style>
                 </head>
-                <header class="contenedor header-productos">
-                    <div class="logo">
-                        <img src="http://localhost:3000/img/beauscent.png" alt="Logo BeauScent" onclick="location.href='/cliente/productos'">
-                    </div>
-                </header>
                 <body>
-                    ${html.cabecera}            
-                    ${html.detalle}
-                    ${html.pie}
+                    <div class="contenedor-pdf">
+                        <header class="contenedor header-productos">
+                            <div class="logo">
+                                <img src="http://localhost:3000/img/beauscent.png" alt="Logo BeauScent" onclick="location.href='/cliente/productos'">
+                            </div>
+                        </header>
+                        ${html.cabecera}            
+                        ${html.detalle}
+                        ${html.pie}
+                    </div>
                 </body>
             </html>
         `;
