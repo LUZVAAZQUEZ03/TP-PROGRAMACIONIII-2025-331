@@ -109,10 +109,15 @@ exports.activar = async (req, res) => {
     const id = req.params.id;
 
     try{
-        await Producto.activate(id);
-    
-        res.redirect('/admin/dashboard');
-        console.log("activado");
+        if (await Producto.getStock(id) > 0 ){
+
+            await Producto.activate(id);
+        
+            res.redirect('/admin/dashboard');
+            console.log("activado");
+        }else{
+            res.redirect('/admin/dashboard?error=sinStock');
+        }
     }catch(error){
         throw (error)
     }

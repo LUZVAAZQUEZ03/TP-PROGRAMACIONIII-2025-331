@@ -110,6 +110,16 @@ module.exports = {
         }
     },
 
+    async getStock(id ){
+        const query = 'SELECT stock FROM productos WHERE id = ?';
+        try{
+            const result = await executeQuery(query,[id]);
+            return result;
+        }catch(error){
+            throw (error)
+        }
+    },
+
     async createUser(user){
         console.log(user)
         const query = 'INSERT INTO usuario  (usuario , correo , passw ) VALUES (?, ?, ?)';

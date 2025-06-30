@@ -130,5 +130,11 @@
     };
 </script>
 
+<script>
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("error") === "sinStock") {
+        alert("¡NO SE PUEDEN ACTIVAR PRODUCTOS SIN STOCK!");
+    }
+</script>
 </body>
 </html>

@@ -2,13 +2,13 @@ CREATE DATABASE IF NOT EXISTS beauscent_db;
 USE beauscent_db;
 
 CREATE TABLE productos (
-  	id INT AUTO_INCREMENT PRIMARY KEY,
-  	nombre VARCHAR(100),
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
     precio DECIMAL(10,2),
-  	stock INT,
-  	fotoProducto VARCHAR(255),
+    stock INT,
+    fotoProducto VARCHAR(255),
     categoria ENUM('Perfume', 'Skincare'),
-  	estado BOOLEAN DEFAULT 1
+    estado BOOLEAN DEFAULT 1
 );
 
 INSERT INTO productos (nombre, precio, stock, fotoProducto, categoria, estado) VALUES
