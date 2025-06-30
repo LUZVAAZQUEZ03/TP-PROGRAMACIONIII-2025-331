@@ -52,7 +52,7 @@ const configApi = (app) => {
     //Rutas
     // ──────────────────────────────────────────────────────────────────────
     app.use('/admin', rutasAdmin); // Admin
-    app.use('/cliente', rutasCliente); // Cliente
+    app.use('/', rutasCliente); // Cliente
     app.use('/api/productos', rutasProductos); // Productos API
     app.use('/api/ventas', rutasVentas); // Ventas API
     app.use('/ticket', rutasTicket); // Ticket PDF
