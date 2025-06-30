@@ -19,7 +19,7 @@ INSERT INTO productos (nombre, precio, stock, fotoProducto, categoria, estado) V
     ('Crema HydraGlow 50 ml', 34.99, 55, '/productos/6.png', 'Skincare', 1);
 
 CREATE TABLE usuario(
-	id INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR (100),
     correo VARCHAR (100),
     passw VARCHAR (400)
@@ -48,23 +48,3 @@ CREATE TABLE detalles_venta (
     FOREIGN KEY (venta_id) REFERENCES ventas(id),
     FOREIGN KEY (producto_id) REFERENCES productos(id)
 );
-
-TRUNCATE TABLE productos;
-
-
-SELECT * FROM usuario;
-
-SELECT * FROM productos;
-update productos set estado = 0 where id = 5;
-SELECT * FROM productos;
-
-
-drop table productos;
-drop table ventas;
-delete from productos where estado = 0;
-SELECT * FROM ventas;
-
-show databases;
-
-show tables;
-select * from productos;
