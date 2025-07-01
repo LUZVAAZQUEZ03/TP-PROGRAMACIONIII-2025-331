@@ -109,8 +109,8 @@ exports.activar = async (req, res) => {
     const id = req.params.id;
 
     try{
-        if (await Producto.getStock(id) > 0 ){
-
+        const stockActual = await Producto.getStock(id)
+        if (stockActual[0].stock > 0 ){
             await Producto.activate(id);
         
             res.redirect('/admin/dashboard');

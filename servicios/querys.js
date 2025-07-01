@@ -94,6 +94,9 @@ module.exports = {
         const query = 'UPDATE productos SET estado = 1 WHERE id = ?';
         try{
             const result = await executeQuery(query,[id]);
+
+            console.log("result")
+            console.log(result)
             return result;
         }catch(error){
             throw (error)

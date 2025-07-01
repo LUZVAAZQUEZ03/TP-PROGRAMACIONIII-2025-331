@@ -29,7 +29,7 @@ CREATE TABLE usuario(
 INSERT INTO usuario (usuario, correo, passw) VALUES
     ('David',	'david@example.com', '$2b$10$D7ml0Vv/H.VNnjgK3ROj4uelGYV9If85047SJPJeJnD3uQ8MaSj5u'),
     ('Alice',	'alice@example.com', '$2b$10$AD2FIHLMZH50IFWIltl6EuWKutVDj4LuX1V.5p24eVRRo9wDwX2oy'),
-    ('admin1', 'admin1@example.com', '');
+    ('admin1', 'admin1@example.com', '$2b$10$d/dfN5.Nw/00BQTSOxW3GuPv5Idr64RE/Pn42A0T5gJFF5UnOJEAi');
 
 
 CREATE TABLE ventas (
